@@ -1,5 +1,7 @@
 # Brijesh Kumar — Portfolio
 
+**Live site:** [https://brijesh667.github.io/MyPortfolio/](https://brijesh667.github.io/MyPortfolio/)
+
 A React + TypeScript portfolio built from `Updated_resume.pdf`. Vite powers the dev server and production build; there is no backend and no database.
 
 ## Stack
@@ -25,49 +27,66 @@ npm run build   # type-checks, then outputs a production build to dist/
 npm run preview # serves dist/ locally
 ```
 
-## Deploy a live link
-
-### Vercel (recommended)
-
-1. Push this folder to a GitHub repository.
-2. Go to [vercel.com/new](https://vercel.com/new) and import the repository.
-3. Vercel auto-detects Vite. Keep the defaults:
-   - **Build command:** `npm run build`
-   - **Output directory:** `dist`
-4. Deploy. Every push to the main branch redeploys automatically.
-
-Or from the terminal:
+To preview exactly like GitHub Pages, build with the base path:
 
 ```bash
-npm i -g vercel
-vercel
+npm run build -- --base=/MyPortfolio/
+npm run preview
 ```
 
-### Netlify
+## Deploy a live link
+
+### GitHub Pages (current setup)
+
+This repository is already configured to deploy to GitHub Pages on every push to `main`:
+
+**Live URL:** https://brijesh667.github.io/MyPortfolio/
+
+The workflow lives in `.github/workflows/deploy.yml`. It builds with the project base path `--base=/MyPortfolio/`, uploads `dist/`, and deploys it through GitHub Actions.
+
+To publish an update:
+
+```bash
+git add .
+git commit -m "Update portfolio"
+git push origin main
+```
+
+The site redeploys automatically in about a minute. You can watch it under the repository's **Actions** tab.
+
+If the repository is renamed, update these in the same commit:
+
+- `--base=/MyPortfolio/` in `.github/workflows/deploy.yml`
+- The canonical, `og:url`, `og:image`, and `twitter:image` URLs in `index.html`
+- The `Person` JSON-LD `url` in `index.html`
+
+### Vercel (alternative)
+
+1. Import the repository at [vercel.com/new](https://vercel.com/new).
+2. Vercel auto-detects Vite. Keep the defaults:
+   - **Build command:** `npm run build`
+   - **Output directory:** `dist`
+3. Deploy. Every push to the main branch redeploys automatically.
+
+Vercel serves from `/`, so the `--base` flag is only needed for GitHub Pages.
+
+### Netlify (alternative)
 
 - **Build command:** `npm run build`
 - **Publish directory:** `dist`
 
-### GitHub Pages
-
-GitHub Pages serves project sites from `/<repo-name>/`, so set a base path before building:
-
-```bash
-npm run build -- --base=/your-repo-name/
-```
-
-Then publish the `dist` folder with your preferred GitHub Pages workflow. Vercel or Netlify is simpler because the default `/` base works as-is.
-
-### After deploying
+### After using a custom domain
 
 1. Add the production URL to `<link rel="canonical">` and `<meta property="og:url">` in `index.html`.
-2. Change `og:image` and `twitter:image` to an absolute URL, e.g. `https://your-domain.com/og.png`.
-3. Re-deploy.
+2. Change `og:image` and `twitter:image` to absolute URLs on that domain.
+3. Update the base path in the Pages workflow if the site moves to a root domain.
+4. Re-deploy.
 
 ## Project structure
 
 ```
 .
+├── .github/workflows/deploy.yml  # GitHub Pages deployment
 ├── index.html                  # Meta tags, theme bootstrap, JSON-LD
 ├── src/
 │   ├── main.tsx                # React entry point

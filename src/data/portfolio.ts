@@ -22,7 +22,7 @@ export const site: SiteInfo = {
   location: "Bilaspur, India",
   github: "https://github.com/Brijesh667",
   linkedin: "https://www.linkedin.com/in/brijesh-kumar-56093832a",
-  resumePath: "/resume.pdf",
+  resumePath: `${import.meta.env.BASE_URL}resume.pdf`,
   resumeDownloadName: "Brijesh_Kumar_Resume.pdf",
   footerTagline: "AI systems, evaluation tooling, and full-stack products.",
 };
