@@ -17,14 +17,14 @@ export default function Contact() {
   const { geo, contact, contactPage, images } = portfolio;
 
   return (
-    <section id="contact" className="relative px-4 py-16 sm:px-6 lg:py-20">
+    <section id="contact" className="relative px-4 pb-24 pt-10 sm:px-6 sm:pb-16 sm:pt-16 lg:pb-20 lg:pt-20">
       <div
         aria-hidden="true"
         className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:80px_80px] opacity-30 [mask-image:radial-gradient(ellipse_75%_45%_at_50%_0%,black,transparent)]"
       />
 
-      <div className="mx-auto max-w-7xl space-y-10">
-        <header className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+      <div className="mx-auto max-w-7xl space-y-8 sm:space-y-10">
+        <header className="grid gap-6 sm:gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
           <div className="max-w-3xl space-y-5">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
@@ -40,7 +40,7 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="text-[clamp(3rem,9vw,6.5rem)] font-semibold leading-[0.92] tracking-tight text-white"
+              className="text-[clamp(2.5rem,9vw,6.5rem)] font-semibold leading-[0.95] tracking-tight text-white"
             >
               {contactPage.heading.map((line) => (
                 <span
@@ -73,7 +73,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9, delay: 0.1 }}
-            className="relative min-h-96 overflow-hidden rounded-4xl border border-white/10 bg-black/20 sm:min-h-[28rem] lg:min-h-[32rem]"
+            className="relative min-h-72 overflow-hidden rounded-4xl border border-white/10 bg-black/20 sm:min-h-[28rem] lg:min-h-[32rem]"
           >
             <div className="absolute inset-0 z-0">
               <PhotoCarousel
@@ -106,7 +106,7 @@ export default function Contact() {
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="section-shell p-6 sm:p-8"
+              className="section-shell p-5 sm:p-8"
             >
               <div className="flex flex-col items-start gap-4 sm:flex-row sm:justify-between">
                 <div className="space-y-3">
@@ -174,7 +174,7 @@ export default function Contact() {
               initial={{ opacity: 0, y: 18 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="section-shell p-6 sm:p-8"
+              className="section-shell p-5 sm:p-8"
             >
               <h2 className="text-2xl font-semibold text-white">
                 {contactPage.takeActionTitle}

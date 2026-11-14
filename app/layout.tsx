@@ -98,6 +98,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn(
+        "dark",
         geistSans.variable,
         geistMono.variable,
         geistSans.className,
@@ -111,7 +112,7 @@ export default function RootLayout({
         <ProgressBar />
         <Navigation />
 
-        <main className="relative z-10  pt-0 ">{children}</main>
+        <main className="relative z-10 pt-0">{children}</main>
         <Footer />
 
         <Script

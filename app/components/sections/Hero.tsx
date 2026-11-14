@@ -12,10 +12,10 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative overflow-hidden px-4 pb-16 pt-10 sm:px-6 sm:pt-10 lg:pb-20 lg:pt-8"
+      className="relative overflow-hidden px-4 pb-10 pt-6 sm:px-6 sm:pb-16 sm:pt-10 lg:pb-20 lg:pt-8"
     >
-      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.25fr_0.95fr] lg:items-center lg:gap-14">
-        <div className="order-2 space-y-8 sm:order-none lg:space-y-10">
+      <div className="mx-auto grid max-w-7xl gap-6 sm:gap-8 lg:grid-cols-[1.25fr_0.95fr] lg:items-center lg:gap-14">
+        <div className="space-y-6 sm:space-y-8 lg:space-y-10">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -37,7 +37,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-wrap items-center gap-x-7 gap-y-4"
+              className="flex flex-wrap items-center gap-x-6 gap-y-2 sm:gap-x-7 sm:gap-y-4"
             >
               {heroStats.map((stat, index) => (
                 <div key={stat.label} className="contents">
@@ -45,10 +45,10 @@ export default function Hero() {
                     <div className="hidden h-9 w-px bg-white/10 sm:block" />
                   )}
                   <div>
-                    <p className="text-2xl font-semibold tracking-tight text-white">
+                    <p className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
                       {stat.value}
                     </p>
-                    <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-white/45">
+                    <p className="mt-1 text-[11px] uppercase tracking-[0.18em] text-white/45 sm:tracking-[0.2em]">
                       {stat.label}
                     </p>
                   </div>
@@ -65,14 +65,14 @@ export default function Hero() {
           >
             <Link
               href={hero.primaryCta.href}
-              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition-transform duration-300 hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-semibold text-black transition-transform duration-300 hover:-translate-y-0.5 sm:px-5"
             >
               {hero.primaryCta.label}
               <Icon name={hero.primaryCta.icon} className="h-4 w-4" />
             </Link>
             <Link
               href={hero.secondaryCta.href}
-              className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/4 px-5 py-3 text-sm font-semibold text-white/88 transition-colors duration-300 hover:border-white/20 hover:bg-white/6"
+              className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/4 px-4 py-3 text-sm font-semibold text-white/88 transition-colors duration-300 hover:border-white/20 hover:bg-white/6 sm:px-5"
             >
               {hero.secondaryCta.label}
               <Icon name={hero.secondaryCta.icon} className="h-4 w-4 text-brand-primary" />
@@ -84,9 +84,9 @@ export default function Hero() {
           initial={{ opacity: 0, x: 24 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9, delay: 0.15 }}
-          className="order-1 overflow-hidden rounded-4xl border border-white/10 bg-black/20 sm:order-none"
+          className="overflow-hidden rounded-4xl border border-white/10 bg-black/20"
         >
-          <div className="relative min-h-112 sm:min-h-128">
+          <div className="relative min-h-80 sm:min-h-128">
             <OptimizedImage
               src={images.hero}
               alt={`${profile.name} portrait`}
@@ -106,7 +106,7 @@ export default function Hero() {
               <p className="text-xs uppercase tracking-[0.24em] text-white/45">
                 Availability
               </p>
-              <p className="mt-3 text-base font-semibold text-white">
+              <p className="mt-2 text-sm font-semibold text-white sm:mt-3 sm:text-base">
                 {profile.availability}
               </p>
             </div>

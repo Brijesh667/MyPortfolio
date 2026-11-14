@@ -114,7 +114,7 @@ export default function ProjectGallery({
       </div>
 
       {loop && (
-        <div className="absolute inset-x-0 bottom-3 z-10 flex items-center justify-center gap-1.5">
+        <div className="absolute inset-x-0 bottom-2 z-10 flex items-center justify-center gap-0.5 sm:bottom-3 sm:gap-1.5">
           {images.map((src, index) => (
             <button
               key={src}
@@ -122,13 +122,17 @@ export default function ProjectGallery({
               onClick={() => goTo(index)}
               aria-label={`Show ${alt} screenshot ${index + 1}`}
               aria-current={index === active}
-              className={cn(
-                "h-1.5 rounded-full transition-all duration-300",
-                index === active
-                  ? "w-5 bg-white"
-                  : "w-1.5 bg-white/35 hover:bg-white/60",
-              )}
-            />
+              className="flex h-6 w-5 items-center justify-center"
+            >
+              <span
+                className={cn(
+                  "h-1.5 rounded-full transition-all duration-300",
+                  index === active
+                    ? "w-5 bg-white"
+                    : "w-1.5 bg-white/35 hover:bg-white/60",
+                )}
+              />
+            </button>
           ))}
         </div>
       )}

@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { cn } from "@/app/lib/utils/cn";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import ThemeToggle from "../ui/ThemeToggle";
 import MagneticWrapper from "@/app/components/animations/MagneticWrapper";
 import { Icon } from "@/app/lib/icons";
 import portfolio from "@/app/lib/config/portfolio";
@@ -16,13 +15,14 @@ export default function Navigation() {
 
   return (
     <motion.nav
+      aria-label="Main navigation"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       className="fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] left-1/2 top-auto z-50 w-[calc(100%-0.75rem)] max-w-[95%] -translate-x-1/2 sm:bottom-auto sm:top-4 sm:w-full sm:max-w-xl"
     >
       {/* Glass Container */}
-      <div className="flex items-center justify-between gap-1 overflow-x-auto rounded-2xl bg-[#0a0a0a]/95 px-2 py-2.5 sm:gap-2 sm:rounded-full sm:bg-black/45 sm:px-3 sm:py-2.5 sm:shadow-[0_12px_40px_rgba(0,0,0,0.3)] sm:backdrop-blur-xl">
+      <div className="flex items-center justify-between gap-1 overflow-x-auto rounded-2xl bg-[#0a0a0a]/95 px-2 py-2.5 sm:justify-center sm:gap-2 sm:rounded-full sm:bg-black/45 sm:px-3 sm:py-2.5 sm:shadow-[0_12px_40px_rgba(0,0,0,0.3)] sm:backdrop-blur-xl">
         {navItems.map((item) => {
           const isActive =
             item.href === "/"
@@ -47,13 +47,6 @@ export default function Navigation() {
             </MagneticWrapper>
           );
         })}
-
-        <span className="mx-1 hidden h-6 w-px shrink-0 bg-white/20 dark:bg-white/30 sm:block" />
-
-        {/* Theme Toggle inline */}
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center sm:h-auto sm:w-auto">
-          <ThemeToggle />
-        </div>
       </div>
     </motion.nav>
   );

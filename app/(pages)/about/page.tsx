@@ -84,16 +84,16 @@ export default function About() {
   } = portfolio;
 
   return (
-    <section id="about" className="px-4 py-16 sm:px-6 lg:py-20">
-      <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[340px_1fr] lg:gap-10">
-        <aside className="space-y-5 lg:sticky lg:top-28 lg:h-fit">
+    <section id="about" className="px-4 pb-24 pt-10 sm:px-6 sm:pb-16 sm:pt-16 lg:pb-20 lg:pt-20">
+      <div className="mx-auto grid max-w-7xl gap-6 sm:gap-8 lg:grid-cols-[340px_1fr] lg:gap-10">
+        <aside className="space-y-4 sm:space-y-5 lg:sticky lg:top-28 lg:h-fit">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="section-shell p-5 sm:p-6"
           >
-            <div className="mx-auto w-full max-w-60 overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/20">
+            <div className="mx-auto w-full max-w-56 overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/20 sm:max-w-60">
               <PhotoCarousel
                 images={images.gallery}
                 className="aspect-[3/4]"
@@ -102,11 +102,11 @@ export default function About() {
               />
             </div>
 
-            <div className="mt-6 space-y-3 text-center">
+            <div className="mt-5 space-y-3 text-center sm:mt-6">
               <p className="text-xs uppercase tracking-[0.24em] text-white/45">
                 {aboutPage.profileBadge}
               </p>
-              <h1 className="text-3xl font-semibold tracking-tight text-white">
+              <h1 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
                 {profile.name}
               </h1>
               <p className="text-sm text-white/68">{profile.role}</p>
@@ -143,13 +143,13 @@ export default function About() {
           </motion.div>
         </aside>
 
-        <div className="space-y-12">
+        <div className="space-y-8 sm:space-y-12">
           <motion.section
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={containerVariants}
-            className="section-shell p-6 sm:p-8"
+            className="section-shell p-5 sm:p-8"
           >
             <motion.div
               variants={itemVariants}
@@ -181,14 +181,14 @@ export default function About() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={containerVariants}
-              className="section-shell p-6 sm:p-8"
+              className="section-shell p-5 sm:p-8"
             >
               <motion.div
                 variants={itemVariants}
                 className="flex items-center gap-3"
               >
                 <Briefcase className="h-5 w-5 text-brand-primary" />
-                <h2 className="text-2xl font-semibold tracking-tight text-white">
+                <h2 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
                   {aboutPage.experienceTitle}
                 </h2>
               </motion.div>
@@ -251,14 +251,14 @@ export default function About() {
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={containerVariants}
-              className="section-shell p-6 sm:p-8"
+              className="section-shell p-5 sm:p-8"
             >
               <motion.div
                 variants={itemVariants}
                 className="flex items-center gap-3"
               >
                 <GraduationCap className="h-5 w-5 text-brand-signal" />
-                <h2 className="text-2xl font-semibold tracking-tight text-white">
+                <h2 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
                   {aboutPage.educationTitle}
                 </h2>
               </motion.div>
@@ -317,19 +317,19 @@ export default function About() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={containerVariants}
-            className="section-shell p-6 sm:p-8"
+            className="section-shell p-5 sm:p-8"
           >
               <motion.div
                 variants={itemVariants}
                 className="flex items-center gap-3"
               >
                 <Code2 className="h-5 w-5 text-brand-primary" />
-                <h2 className="text-2xl font-semibold tracking-tight text-white">
+                <h2 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
                   {aboutPage.skillsTitle}
                 </h2>
               </motion.div>
 
-            <div className="mt-6 grid gap-x-10 gap-y-8 md:grid-cols-2">
+            <div className="mt-6 grid gap-x-8 gap-y-6 sm:gap-x-10 sm:gap-y-8 md:grid-cols-2">
               {Object.entries(skills).map(([category, categorySkills]) => (
                 <motion.div
                   key={category}
@@ -351,7 +351,7 @@ export default function About() {
                       return (
                         <span
                           key={skill}
-                          className="inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/[0.04] px-3.5 py-2 transition-colors hover:border-white/16 hover:bg-white/[0.07]"
+                          className="inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/[0.04] px-3 py-1.5 transition-colors hover:border-white/16 hover:bg-white/[0.07] sm:px-3.5 sm:py-2"
                         >
                           <Icon className="h-3.5 w-3.5 text-brand-primary" />
                           <span className="text-sm font-medium text-white/85">

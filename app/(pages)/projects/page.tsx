@@ -39,7 +39,7 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative overflow-hidden px-4 py-16 sm:px-6 lg:py-20"
+      className="relative overflow-hidden px-4 pb-24 pt-10 sm:px-6 sm:pb-16 sm:pt-16 lg:pb-20 lg:pt-20"
     >
       <script
         type="application/ld+json"
@@ -53,9 +53,9 @@ export default function Projects() {
         className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:72px_72px] opacity-40 [mask-image:radial-gradient(ellipse_75%_45%_at_50%_0%,black,transparent)]"
       />
 
-      <div className="mx-auto max-w-7xl space-y-10 lg:space-y-12">
-        <header className="grid items-end gap-10 lg:grid-cols-[3fr_2fr] lg:gap-14">
-          <div className="max-w-3xl space-y-5">
+      <div className="mx-auto max-w-7xl space-y-8 sm:space-y-10 lg:space-y-12">
+        <header className="grid items-end gap-6 sm:gap-10 lg:grid-cols-[3fr_2fr] lg:gap-14">
+          <div className="max-w-3xl space-y-4 sm:space-y-5">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -98,7 +98,7 @@ export default function Projects() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.5 }}
-            className="w-full"
+            className="hidden w-full sm:block"
           >
             <div className="border border-white/10">
               <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
@@ -144,7 +144,7 @@ export default function Projects() {
           </motion.div>
         </header>
 
-        <div className="grid gap-6 lg:grid-cols-2">
+        <div className="grid gap-5 sm:gap-6 lg:grid-cols-2">
           {projects.map((project, index) => (
             <motion.article
               key={project.id}
@@ -152,7 +152,7 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: (index % 2) * 0.08 }}
-              className="flex flex-col overflow-hidden rounded-[2rem] bg-white/[0.03] transition-transform duration-300 sm:shadow-[0_24px_70px_rgba(0,0,0,0.24)] sm:hover:-translate-y-1"
+              className="flex flex-col overflow-hidden rounded-[1.75rem] bg-white/[0.03] transition-transform duration-300 sm:rounded-[2rem] sm:shadow-[0_24px_70px_rgba(0,0,0,0.24)] sm:hover:-translate-y-1"
             >
               <div className="relative aspect-16/10 overflow-hidden bg-white/3">
                 <ProjectGallery
@@ -161,17 +161,17 @@ export default function Projects() {
                 />
               </div>
 
-              <div className="flex flex-1 flex-col gap-4 p-6 sm:p-8">
+              <div className="flex flex-1 flex-col gap-3 p-5 sm:gap-4 sm:p-8">
                 <div className="space-y-2">
                   <p className="text-xs uppercase tracking-[0.22em] text-white/45">
                     {project.role}
                   </p>
-                  <h2 className="text-2xl font-semibold tracking-tight text-white">
+                  <h2 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
                     {project.title}
                   </h2>
                 </div>
 
-                <p className="max-w-2xl text-sm leading-7 text-white/70">
+                <p className="max-w-2xl text-sm leading-6 text-white/70 sm:leading-7">
                   {project.longDescription}
                 </p>
 

@@ -70,10 +70,10 @@ automatically in the cards (every 2 seconds):
 
 | Project | Files |
 | --- | --- |
-| Sentinels of Truth | `sentinels-1.png` … `sentinels-3.png` |
-| Applied | `applied-1.png` … `applied-4.png` |
-| MyFitness | `fitness-1.png` … `fitness-4.png` |
-| Prashikshak | `prashikshak-1.png` … `prashikshak-3.png` |
+| Sentinels of Truth | `sentinels-1.webp` … `sentinels-3.webp` |
+| Applied | `applied-1.webp` … `applied-4.webp` |
+| MyFitness | `fitness-1.webp` … `fitness-4.webp` |
+| Prashikshak | `prashikshak-1.webp` … `prashikshak-3.webp` |
 
 Each project supports a `gallery` array in `portfolio.ts`; `image` is the
 primary image used for metadata/structured data. To add or remove screenshots,

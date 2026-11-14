@@ -191,11 +191,11 @@ const portfolio: PortfolioConfig = {
       longDescription:
         "Engineered an AI fact-checking pipeline that verifies claims across 6+ knowledge domains at an average latency of 11.78 seconds per claim. Evaluated on 100 diverse factual claims with 99.00% accuracy, 99.01% F1-score, 98.04% precision, and 100% recall with zero pipeline errors.",
       role: "AI pipeline and full-stack development",
-      image: "/projects/sentinels-1.png",
+      image: "/projects/sentinels-1.webp",
       gallery: [
-        "/projects/sentinels-1.png",
-        "/projects/sentinels-2.png",
-        "/projects/sentinels-3.png",
+        "/projects/sentinels-1.webp",
+        "/projects/sentinels-2.webp",
+        "/projects/sentinels-3.webp",
       ],
       tags: ["Tavily API", "Gemini", "Pinecone", "React", "Node.js"],
       liveUrl: "https://sentinels-of-truth-93j9.vercel.app",
@@ -210,12 +210,12 @@ const portfolio: PortfolioConfig = {
       longDescription:
         "Engineered a MERN job-tracking platform with 24 REST APIs that aggregates 6 job boards in parallel with de-duplication and AI match scoring. Built a React 18 + TanStack Query dashboard with a 14-day deadline ruler, WCAG 2.1 AA accessibility, and 6-hour TTL caching so repeat searches skip all provider calls.",
       role: "Full-stack design and development",
-      image: "/projects/applied-1.png",
+      image: "/projects/applied-1.webp",
       gallery: [
-        "/projects/applied-1.png",
-        "/projects/applied-2.png",
-        "/projects/applied-3.png",
-        "/projects/applied-4.png",
+        "/projects/applied-1.webp",
+        "/projects/applied-2.webp",
+        "/projects/applied-3.webp",
+        "/projects/applied-4.webp",
       ],
       tags: [
         "React 18",
@@ -238,12 +238,12 @@ const portfolio: PortfolioConfig = {
       longDescription:
         "Implemented a mobile-first TypeScript + MERN fitness tracker with 40 REST APIs and 50+ exercises across 13 muscle groups. Built a RAG diet assistant that returns Zod-validated meal plans with source citations, plus a 120-day heatmap and rule-based streak analytics covered by 14 backend test suites.",
       role: "Full-stack development",
-      image: "/projects/fitness-1.png",
+      image: "/projects/fitness-1.webp",
       gallery: [
-        "/projects/fitness-1.png",
-        "/projects/fitness-2.png",
-        "/projects/fitness-3.png",
-        "/projects/fitness-4.png",
+        "/projects/fitness-1.webp",
+        "/projects/fitness-2.webp",
+        "/projects/fitness-3.webp",
+        "/projects/fitness-4.webp",
       ],
       tags: [
         "React 18",
@@ -266,11 +266,11 @@ const portfolio: PortfolioConfig = {
       longDescription:
         "Created a centralized MERN training portal that won 1st Place at Smart India Hackathon 2025 out of 500+ teams. Architected REST APIs for role-based access and participant tracking, reducing manual scheduling work by 60%.",
       role: "Full-stack development",
-      image: "/projects/prashikshak-1.png",
+      image: "/projects/prashikshak-1.webp",
       gallery: [
-        "/projects/prashikshak-1.png",
-        "/projects/prashikshak-2.png",
-        "/projects/prashikshak-3.png",
+        "/projects/prashikshak-1.webp",
+        "/projects/prashikshak-2.webp",
+        "/projects/prashikshak-3.webp",
       ],
       tags: ["MongoDB", "Express", "React", "Node.js"],
       liveUrl: null,

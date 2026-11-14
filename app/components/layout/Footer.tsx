@@ -23,17 +23,17 @@ export default function Footer() {
     {
       name: "Share on LinkedIn",
       href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
-      icon: "linkedin",
+      icon: "Linkedin",
     },
     {
       name: "Share on Facebook",
       href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
-      icon: "facebook",
+      icon: "Facebook",
     },
     {
       name: "Share on X",
       href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(shareText)}`,
-      icon: "twitter",
+      icon: "Twitter",
     },
   ] as const;
   const handleLogoClick = () => {
@@ -68,8 +68,8 @@ export default function Footer() {
 
   return (
     <footer className="mt-6 bg-black">
-      <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12">
-        <div className="grid gap-10 py-6 sm:py-8 lg:grid-cols-[1.1fr_0.9fr_0.9fr]">
+      <div className="mx-auto max-w-7xl px-4 pb-24 pt-10 sm:px-6 sm:py-12">
+        <div className="grid gap-8 py-5 sm:gap-10 sm:py-8 lg:grid-cols-[1.1fr_0.9fr_0.9fr]">
           <div className="space-y-4">
             <motion.button
               onClick={handleLogoClick}
@@ -96,7 +96,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="group inline-flex items-center gap-2 transition-colors hover:text-white"
+                    className="group inline-flex items-center gap-2 py-1 transition-colors hover:text-white"
                   >
                     {link.label}
                     <ArrowUpRight className="h-4 w-4 text-brand-primary opacity-0 transition-opacity group-hover:opacity-100" />
