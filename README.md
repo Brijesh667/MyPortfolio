@@ -48,14 +48,14 @@ sitemap, and the Open Graph images all read from the config.
 
 ## Images
 
-The profile photo is `public/images/profile.webp` and is used on the home hero
+The profile photo is `public/images/brijesh-profile.webp` and is used on the home hero
 and metadata fallback. The about and contact pages rotate through a gallery of
 photos with a random slide direction on every change (left→right, right→left,
 top→bottom, or bottom→top):
 
 | File | Used for |
 | --- | --- |
-| `public/images/profile.webp` | Profile photo / home hero |
+| `public/images/brijesh-profile.webp` | Profile photo / home hero |
 | `public/images/iitkgp-1.webp` | IIT Kharagpur campus |
 | `public/images/iitkgp-2.webp` | At IIT Kharagpur |
 | `public/images/sih-1.webp` | Smart India Hackathon 2025 winner |

@@ -25,12 +25,12 @@ const portfolio: PortfolioConfig = {
   },
 
   images: {
-    hero: "/images/profile.webp",
-    about: "/images/profile.webp",
-    contact: "/images/profile.webp",
-    seoFallback: "/images/profile.webp",
+    hero: "/images/brijesh-profile.webp",
+    about: "/images/brijesh-profile.webp",
+    contact: "/images/brijesh-profile.webp",
+    seoFallback: "/images/brijesh-profile.webp",
     gallery: [
-      { src: "/images/profile.webp", alt: "Brijesh Kumar portrait" },
+      { src: "/images/brijesh-profile.webp", alt: "Brijesh Kumar portrait" },
       {
         src: "/images/iitkgp-1.webp",
         alt: "IIT Kharagpur campus building",
@@ -75,7 +75,7 @@ const portfolio: PortfolioConfig = {
       "https://www.linkedin.com/in/brijesh-kumar-56093832a",
     ],
     googleVerification: process.env.GOOGLE_VERIFICATION,
-    image: "/images/profile.webp",
+    image: "/images/brijesh-profile.webp",
   },
 
   analytics: {
