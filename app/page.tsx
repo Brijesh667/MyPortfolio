@@ -49,7 +49,7 @@ const homeStructuredData = {
       "@id": websiteId,
       name: seo.applicationName,
       url,
-      description: `${profile.name}'s portfolio of full-stack work, projects, and contact details.`,
+      description: `${profile.name}'s projects, experience, and contact details.`,
       publisher: { "@id": personId },
       inLanguage: "en",
     },

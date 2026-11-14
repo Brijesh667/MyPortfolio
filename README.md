@@ -5,21 +5,22 @@ Bilaspur, India. Built on the open-source
 [portfolio-template](https://github.com/sabin-paudel/portfolio-template) by
 [Sabin Paudel](https://sabinpaudel.com.np), then rewritten with custom content.
 
-## Live sections
+## Pages
 
 | Route | Content |
 | --- | --- |
-| `/` | Hero, working principles, featured projects |
+| `/` | Hero, project cards, footer |
 | `/about` | Introduction, experience, education, skills |
-| `/projects` | All projects with live/source links |
-| `/contact` | Email, phone, socials, availability |
+| `/projects` | Four projects with metrics and live/source links |
+| `/contact` | Email, resume, GitHub, LinkedIn |
 
 ## Tech stack
 
 - Next.js 16 (App Router) + React 19
 - TypeScript
 - Tailwind CSS 4
-- Framer Motion + Lucide React
+- Lucide React
+- Minimal Framer Motion (hero/nav load fade only)
 - Generated Open Graph images, sitemap, and robots
 
 ## Run locally
@@ -46,39 +47,23 @@ Icons are registered in
 [`app/lib/icons.tsx`](./app/lib/icons.tsx). Page layouts, SEO metadata, the
 sitemap, and the Open Graph images all read from the config.
 
-## Images
+## Images & resume
 
-The profile photo is `public/images/brijesh-profile.webp` and is used on the home hero
-and metadata fallback. The about and contact pages rotate through a gallery of
-photos with a random slide direction on every change (left→right, right→left,
-top→bottom, or bottom→top):
-
-| File | Used for |
+| Files | Used for |
 | --- | --- |
-| `public/images/brijesh-profile.webp` | Profile photo / home hero |
-| `public/images/iitkgp-1.webp` | IIT Kharagpur campus |
-| `public/images/iitkgp-2.webp` | At IIT Kharagpur |
-| `public/images/sih-1.webp` | Smart India Hackathon 2025 winner |
-| `public/images/sih-2.webp` | SIH 2025 grand finale team |
+| `public/images/brijesh-profile.webp` | Home hero, About/Contact gallery, metadata |
+| `public/images/iitkgp-1.webp`, `iitkgp-2.webp` | About/Contact gallery |
+| `public/images/sih-1.webp`, `sih-2.webp` | About/Contact gallery |
+| `public/projects/*.webp` | Project card galleries |
+| `public/resume.pdf` | Resume download (Hero + Contact) |
 
-The gallery is defined in `portfolio.images.gallery`. Add or remove entries
-there to change which photos rotate. Images are cropped with `object-cover`, so
-any aspect ratio fits the boxes without stretching.
-
-Project screenshots live in `public/projects/` and slide from right to left
-automatically in the cards (every 2 seconds):
-
-| Project | Files |
-| --- | --- |
-| Sentinels of Truth | `sentinels-1.webp` … `sentinels-3.webp` |
-| Applied | `applied-1.webp` … `applied-4.webp` |
-| MyFitness | `fitness-1.webp` … `fitness-4.webp` |
-| Prashikshak | `prashikshak-1.webp` … `prashikshak-3.webp` |
-
-Each project supports a `gallery` array in `portfolio.ts`; `image` is the
-primary image used for metadata/structured data. To add or remove screenshots,
-update the files and the matching `gallery` array. Keep screenshots in a
-roughly 16:10 to 19:9 ratio for the best fit.
+- Project cards slide **right → left every 2 seconds** with clickable dots.
+- About and Contact photos change **every 3 seconds** with a random slide
+  direction (left→right, right→left, top→bottom or bottom→top).
+- Gallery image lists live in `portfolio.projects[].gallery` and
+  `portfolio.images.gallery`. The `image` field is the primary project image
+  used by metadata/structured data.
+- Screenshots look best around a 16:10 to 19:9 ratio.
 
 ## Projects included
 

@@ -6,9 +6,7 @@ const portfolio: PortfolioConfig = {
   profile: {
     name: "Brijesh Kumar",
     role: "Full-Stack Developer",
-    tagline: "Building full-stack products and AI-powered systems.",
-    image: "/about.png",
-    availability: "Open to full-stack and AI engineering roles",
+    availability: "Open to full-stack and AI roles.",
     location: "Bilaspur, India",
   },
 
@@ -16,29 +14,15 @@ const portfolio: PortfolioConfig = {
     city: "Bilaspur",
     country: "India",
     countryCode: "IN",
-    timezone: "Asia/Kolkata",
-    flag: "🇮🇳",
-    coordinates: {
-      lat: 22.0797,
-      lng: 82.1391,
-    },
   },
 
   images: {
     hero: "/images/brijesh-profile.webp",
-    about: "/images/brijesh-profile.webp",
-    contact: "/images/brijesh-profile.webp",
     seoFallback: "/images/brijesh-profile.webp",
     gallery: [
       { src: "/images/brijesh-profile.webp", alt: "Brijesh Kumar portrait" },
-      {
-        src: "/images/iitkgp-1.webp",
-        alt: "IIT Kharagpur campus building",
-      },
-      {
-        src: "/images/iitkgp-2.webp",
-        alt: "Brijesh Kumar at IIT Kharagpur",
-      },
+      { src: "/images/iitkgp-1.webp", alt: "IIT Kharagpur campus building" },
+      { src: "/images/iitkgp-2.webp", alt: "Brijesh Kumar at IIT Kharagpur" },
       {
         src: "/images/sih-1.webp",
         alt: "Brijesh Kumar winning Smart India Hackathon 2025",
@@ -54,7 +38,7 @@ const portfolio: PortfolioConfig = {
     title: "Brijesh Kumar | Full-Stack Developer & SIH 2025 Winner",
     titleTemplate: "%s | Brijesh Kumar",
     description:
-      "Brijesh Kumar is a MERN full-stack developer from Bilaspur, India, building production web applications and AI-powered systems. SIH 2025 winner and research intern at IIT Kharagpur.",
+      "Brijesh Kumar — MERN full-stack developer and research intern at IIT Kharagpur. SIH 2025 winner. Projects in AI fact-checking, job search and fitness tracking.",
     applicationName: "Brijesh Kumar Portfolio",
     keywords: [
       "Brijesh Kumar",
@@ -66,8 +50,6 @@ const portfolio: PortfolioConfig = {
       "Node.js developer",
       "TypeScript developer",
       "AI engineer",
-      "agentic AI",
-      "MERN stack developer India",
       "Smart India Hackathon winner",
     ],
     sameAs: [
@@ -84,8 +66,6 @@ const portfolio: PortfolioConfig = {
 
   contact: {
     email: "bk767042@gmail.com",
-    phone: "+919424165443",
-    showPhone: true,
   },
 
   socials: [
@@ -93,92 +73,49 @@ const portfolio: PortfolioConfig = {
       name: "GitHub",
       href: "https://github.com/Brijesh667",
       icon: "Github",
-      tooltip: "Projects, experiments, and open source",
     },
     {
       name: "LinkedIn",
       href: "https://www.linkedin.com/in/brijesh-kumar-56093832a",
       icon: "Linkedin",
-      tooltip: "Experience and professional profile",
     },
     {
       name: "Email",
       href: "mailto:bk767042@gmail.com",
       icon: "Mail",
-      tooltip: "Let's talk about your project",
     },
   ],
 
+  resumeUrl: "/resume.pdf",
+
   hero: {
-    kicker: "Brijesh Kumar · Full-Stack Developer",
-    heading: [
-      { text: "Full-stack products," },
-      { text: "AI systems," },
-      { text: "built end to end.", gradient: true },
-    ],
+    heading: "Hi, I'm Brijesh.",
+    subtitle:
+      "Full-stack developer (MERN) and research intern at IIT Kharagpur. I build web apps and AI tools, and I measure whether they actually work.",
     primaryCta: { label: "View projects", href: "/projects", icon: "ArrowRight" },
-    secondaryCta: { label: "About Brijesh", href: "/about", icon: "ChevronRight" },
+    resumeCta: { label: "Resume", href: "/resume.pdf", icon: "FileText" },
+    contactCta: { label: "Contact", href: "/contact" },
   },
 
   heroStats: [
-    { value: "4", label: "Projects shipped" },
-    { value: "SIH 2025", label: "National winner" },
-    { value: "Bilaspur, India", label: "Based in" },
-  ],
-
-  principles: [
-    {
-      icon: "Layers3",
-      title: "Solve the real problem",
-      body: "Start from how people actually work, not from the stack. The simplest change that removes friction is usually the right one.",
-    },
-    {
-      icon: "Code2",
-      title: "Measure what matters",
-      body: "Latency, accuracy, and accessibility are product features. If a result isn't measured, it isn't finished.",
-    },
-    {
-      icon: "Wand2",
-      title: "Make it feel effortless",
-      body: "Good APIs and interfaces should disappear. Careful details make complex systems feel simple to use.",
-    },
+    { value: "SIH 2025", label: "1st place, 500+ teams" },
+    { value: "IIT Kharagpur", label: "Research intern" },
+    { value: "4", label: "Projects" },
   ],
 
   home: {
-    principlesKicker: "How I Work",
-    principlesTitle: "How I Build",
-    principlesDescription:
-      "A practical approach to full-stack products, AI systems, and the details in between.",
-    workKicker: "Selected Work",
-    workTitle: "Things I've Built",
-    workDescription:
-      "Full-stack platforms and AI tools — from fact-verification engines to job-search dashboards.",
-    aboutCta: { label: "More about Brijesh", href: "/about", icon: "ArrowRight" },
-    projectsCta: { label: "View all projects", href: "/projects", icon: "ArrowRight" },
-  },
-
-  status: {
-    label: "Currently building",
-    note: "Agentic AI research at IIT Kharagpur",
+    projectsTitle: "Projects",
+    allProjectsLabel: "All projects",
   },
 
   navigation: [
     { label: "Home", href: "/", icon: "Home" },
     { label: "About", href: "/about", icon: "User" },
-    { label: "Work", href: "/projects", icon: "Briefcase" },
+    { label: "Projects", href: "/projects", icon: "Briefcase" },
     { label: "Contact", href: "/contact", icon: "Mail" },
   ],
 
   footer: {
-    description:
-      "The personal portfolio of Brijesh Kumar, a MERN full-stack developer from Bilaspur, India, building web products and AI-powered systems.",
-    nav: [
-      { label: "Home", href: "/" },
-      { label: "About", href: "/about" },
-      { label: "Selected projects", href: "/projects" },
-      { label: "Contact", href: "/contact" },
-    ],
-    shareTitle: "Brijesh Kumar | Full-Stack Developer",
     copyright: "Brijesh Kumar",
   },
 
@@ -187,17 +124,15 @@ const portfolio: PortfolioConfig = {
       id: "1",
       title: "Sentinels of Truth",
       description:
-        "An AI fact-verification engine that checks claims across multiple knowledge domains.",
-      longDescription:
-        "Engineered an AI fact-checking pipeline that verifies claims across 6+ knowledge domains at an average latency of 11.78 seconds per claim. Evaluated on 100 diverse factual claims with 99.00% accuracy, 99.01% F1-score, 98.04% precision, and 100% recall with zero pipeline errors.",
-      role: "AI pipeline and full-stack development",
+        "Checks factual claims by searching the web and comparing them with a knowledge base. Covers 6+ topic areas.",
+      metric: "99.00% accuracy on 100 claims · ~11.8 s per claim",
       image: "/projects/sentinels-1.webp",
       gallery: [
         "/projects/sentinels-1.webp",
         "/projects/sentinels-2.webp",
         "/projects/sentinels-3.webp",
       ],
-      tags: ["Tavily API", "Gemini", "Pinecone", "React", "Node.js"],
+      tags: ["Tavily API", "Gemini 3.8 Flash Lite", "Pinecone", "React", "Node.js"],
       liveUrl: "https://sentinels-of-truth-93j9.vercel.app",
       githubUrl: "https://github.com/Brijesh667/Sentinels_of_Truth",
       featured: true,
@@ -206,10 +141,8 @@ const portfolio: PortfolioConfig = {
       id: "2",
       title: "Applied",
       description:
-        "An AI-powered job search and application tracker built on the MERN stack.",
-      longDescription:
-        "Engineered a MERN job-tracking platform with 24 REST APIs that aggregates 6 job boards in parallel with de-duplication and AI match scoring. Built a React 18 + TanStack Query dashboard with a 14-day deadline ruler, WCAG 2.1 AA accessibility, and 6-hour TTL caching so repeat searches skip all provider calls.",
-      role: "Full-stack design and development",
+        "Job search and application tracker. Pulls listings from 6 job boards at once, removes duplicates and scores how well each job matches you.",
+      metric: "24 REST APIs · 6-hour cache so repeat searches are instant",
       image: "/projects/applied-1.webp",
       gallery: [
         "/projects/applied-1.webp",
@@ -218,7 +151,7 @@ const portfolio: PortfolioConfig = {
         "/projects/applied-4.webp",
       ],
       tags: [
-        "React 18",
+        "React",
         "Node.js",
         "Express",
         "MongoDB",
@@ -234,10 +167,8 @@ const portfolio: PortfolioConfig = {
       id: "3",
       title: "MyFitness",
       description:
-        "A mobile-first TypeScript + MERN fitness tracker with a RAG diet assistant.",
-      longDescription:
-        "Implemented a mobile-first TypeScript + MERN fitness tracker with 40 REST APIs and 50+ exercises across 13 muscle groups. Built a RAG diet assistant that returns Zod-validated meal plans with source citations, plus a 120-day heatmap and rule-based streak analytics covered by 14 backend test suites.",
-      role: "Full-stack development",
+        "Mobile-first workout tracker with 50+ exercises across 13 muscle groups, streaks, a 120-day heatmap and an AI diet assistant that cites its sources.",
+      metric: "40 REST APIs · 14 backend test suites",
       image: "/projects/fitness-1.webp",
       gallery: [
         "/projects/fitness-1.webp",
@@ -246,7 +177,7 @@ const portfolio: PortfolioConfig = {
         "/projects/fitness-4.webp",
       ],
       tags: [
-        "React 18",
+        "React",
         "TypeScript",
         "Node.js",
         "Express",
@@ -262,10 +193,8 @@ const portfolio: PortfolioConfig = {
       id: "4",
       title: "Prashikshak",
       description:
-        "A centralized MERN training portal that won 1st place at Smart India Hackathon 2025.",
-      longDescription:
-        "Created a centralized MERN training portal that won 1st Place at Smart India Hackathon 2025 out of 500+ teams. Architected REST APIs for role-based access and participant tracking, reducing manual scheduling work by 60%.",
-      role: "Full-stack development",
+        "Training management portal with role-based access, scheduling and participant tracking. Winner of Smart India Hackathon 2025 (1st of 500+ teams).",
+      metric: "Cut manual scheduling work by 60%",
       image: "/projects/prashikshak-1.webp",
       gallery: [
         "/projects/prashikshak-1.webp",
@@ -280,192 +209,101 @@ const portfolio: PortfolioConfig = {
   ],
 
   projectsPage: {
-    kicker: "Selected work",
-    heading: [
-      { text: "Products built" },
-      { text: "end to end," },
-      { text: "shipped with care.", gradient: true },
-    ],
-    description:
-      "Full-stack platforms and AI tools built with the MERN stack, React, TypeScript, and modern APIs.",
-    indexCard: {
-      title: "Work index",
-      countLabel: "Projects",
-      focusLabel: "Primary focus",
-      focusValue: "Full-stack",
-      toolsLabel: "Main tools",
-      toolsValue: "MERN · Next.js",
-      footer: "From AI pipelines to production dashboards.",
-    },
-    moreText:
-      "More experiments, prototypes, and older work live on GitHub.",
-    moreCtaLabel: "Explore more on GitHub",
+    title: "Projects",
+    summary:
+      "Four projects: two AI tools, a fitness tracker and my SIH-winning portal.",
+    moreCtaLabel: "More on GitHub",
   },
 
   aboutPage: {
-    profileBadge: "Profile",
-    introductionTitle: "Introduction",
     experienceTitle: "Work Experience",
     educationTitle: "Education",
-    skillsTitle: "Technical Skills",
+    skillsTitle: "Skills",
+    dsaNote:
+      "250+ DSA problems solved in C++ (LeetCode + GeeksforGeeks).",
   },
 
   contactPage: {
-    kicker: "Let's connect",
-    heading: [
-      { text: "Have a product" },
-      { text: "worth building?", gradient: true },
-    ],
+    title: "Contact",
     intro:
-      "I'm a full-stack developer open to roles and collaborations in web products and AI systems.\nIf you're building something and need someone who can own it end to end, send a message.",
-    imageBadge: "Let's Talk",
-    emailCardTitle: "Drop me a line",
-    emailCardText:
-      "The fastest way to reach me. I check email daily and usually reply within a day.",
-    responseTime: "Usually replies within a day",
-    basedInBody: "Based in Bilaspur, Chhattisgarh, and open to remote work.",
-    timezoneBody: "IST (UTC+5:30). Usually online from 10 AM to 7 PM.",
-    takeActionTitle: "Take action",
-    takeActionText: "Pick the next step that works best for you.",
-    actions: [
-      {
-        title: "View GitHub",
-        body: "Explore repositories and recent projects.",
-        href: "https://github.com/Brijesh667",
-        icon: "Github",
-      },
-      {
-        title: "Connect on LinkedIn",
-        body: "View my professional profile and experience.",
-        href: "https://www.linkedin.com/in/brijesh-kumar-56093832a",
-        icon: "Linkedin",
-      },
-      {
-        title: "Send an email",
-        body: "Reach me directly at bk767042@gmail.com.",
-        href: "mailto:bk767042@gmail.com",
-        icon: "Mail",
-      },
-    ],
+      "Email is the fastest way to reach me. I'm open to full-stack and AI roles.",
   },
 
   openGraph: {
     home: {
       role: "Full-Stack Developer",
       description:
-        "MERN full-stack development and AI-powered systems from Bilaspur, India.",
+        "MERN full-stack developer and research intern at IIT Kharagpur. SIH 2025 winner.",
     },
     about: {
       subtitle: "About Brijesh",
-      description:
-        "Full-stack background, experience, and technical skills.",
+      description: "Background, experience, education and skills.",
     },
     projects: {
       subtitle: "Projects",
       description:
-        "Full-stack products and AI tools with real benchmarks.",
+        "AI fact-checking, job search, fitness tracking and a SIH-winning portal.",
     },
     contact: {
       subtitle: "Contact",
-      description:
-        "Open to full-stack roles, collaborations, and freelance work.",
+      description: "Email, resume, GitHub and LinkedIn.",
     },
   },
 
   sections: {
-    about: true,
-    projects: true,
-    contact: true,
-    showExperience: true,
-    showEducation: true,
-    showSkills: true,
-    showPrinciples: true,
-    showAvailability: true,
-    showHeroStats: true,
     projectLabels: {
-      live: "Live demo",
-      source: "Source code",
+      live: "Live",
+      source: "Code",
     },
   },
 
   introduction: `
-I'm Brijesh Kumar, a MERN full-stack developer from Bilaspur, India, currently working as a research intern at IIT Kharagpur. I build production web applications end to end — React frontends, Node.js and Express APIs, and data layers that hold up under real usage.
+I'm a final-year B.Tech IT student at Central University Bilaspur, working as a research intern at IIT Kharagpur. I build full-stack apps with React, Node.js and MongoDB, and I'm interested in applied AI.
 
-My work sits at the intersection of full-stack engineering and applied AI. I've built an AI fact-verification pipeline, a RAG-powered fitness assistant, and a job-search platform that aggregates multiple job boards. I care about measurable results: latency, accuracy, accessibility, and code that stays easy to maintain.
-
-In 2025 I won 1st place at Smart India Hackathon as part of the team behind Prashikshak, a training management platform. I'm open to full-stack and AI engineering roles where I can own features from idea to deployment.
+In 2025 my team won 1st place at Smart India Hackathon with Prashikshak, a training management portal. I'm looking for full-stack or AI engineering roles.
 `,
 
   workExperience: [
     {
       title: "Research Intern",
-      company: "Indian Institute of Technology Kharagpur",
+      company: "IIT Kharagpur",
       period: "Jan 2026 — Present",
-      description:
-        "Working on AgentCascade, a testing framework that stress-tests Google's Agent2Agent (A2A) protocol in multi-agent scenarios, supported by automated Python evaluation pipelines.",
-      current: true,
+      bullets: [
+        "Built AgentCascade, a framework that stress-tests Google's Agent2Agent (A2A) protocol.",
+        "Ran reproducible experiments on 3 network topologies (chain, star, mesh) to find where agent communication fails.",
+        "Automated the evaluation pipeline in Python, making benchmark runs 40% faster.",
+      ],
     },
     {
-      title: "Full-Stack Web Developer Intern",
+      title: "Full-Stack Developer Intern",
       company: "Guru Ghasidas Vishwavidyalaya",
       period: "Jan 2025 — Present",
-      description:
-        "Developing full-stack web applications with React.js and Node.js, integrating REST APIs for reliable data communication across the stack.",
-      current: true,
+      bullets: [
+        "Built web apps with React.js and Node.js and connected them through REST APIs.",
+      ],
     },
   ],
 
   education: [
     {
-      title: "B.Tech in Information Technology",
+      title: "B.Tech, Information Technology",
       school: "Central University Bilaspur (GGU)",
-      info: "CGPA: 7.46 · 2023 — 2027",
-      current: true,
+      info: "2023–2027 · CGPA 7.46",
     },
   ],
 
   skills: {
-    "Frameworks & Libraries": [
-      "React.js",
+    Languages: ["JavaScript", "TypeScript", "Python", "C++", "SQL"],
+    "Frontend & Backend": [
+      "React",
       "Next.js",
       "Node.js",
-      "Express.js",
-      "Tailwind CSS",
+      "Express",
       "FastAPI",
-      "Redux",
-      "Vite",
+      "Tailwind CSS",
     ],
-    "Programming Languages": [
-      "JavaScript",
-      "TypeScript",
-      "Python",
-      "C++",
-      "SQL",
-      "C",
-    ],
-    Databases: ["MongoDB", "Redis", "PostgreSQL", "Pinecone"],
-    "Tools & Platforms": [
-      "Git",
-      "GitHub",
-      "GitLab",
-      "Linux",
-      "Docker",
-      "Postman",
-      "CI/CD",
-      "Vercel",
-      "Render",
-      "Clerk",
-    ],
-    "Soft Skills": [
-      "DSA",
-      "OOP",
-      "Problem Solving",
-      "Communication",
-      "Leadership",
-      "Teamwork",
-      "Critical Thinking",
-    ],
-    Languages: ["English", "Hindi"],
+    Databases: ["MongoDB", "PostgreSQL", "Redis", "Pinecone"],
+    Tools: ["Git", "GitHub", "Docker", "Postman", "Linux", "Vercel"],
   },
 };
 

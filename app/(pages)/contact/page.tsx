@@ -1,269 +1,90 @@
-"use client";
-
-import { motion } from "framer-motion";
-import {
-  ArrowUpRight,
-  Calendar,
-  Mail,
-  MapPin,
-  Phone,
-} from "lucide-react";
+import { ArrowUpRight, FileText, Github, Linkedin, Mail } from "lucide-react";
 
 import PhotoCarousel from "@/app/components/ui/PhotoCarousel";
-import { Icon } from "@/app/lib/icons";
+import { assetPath } from "@/app/lib/utils/assetPath";
 import portfolio from "@/app/lib/config/portfolio";
 
 export default function Contact() {
-  const { geo, contact, contactPage, images } = portfolio;
+  const { contactPage, contact, socials, images, resumeUrl } = portfolio;
+  const github = socials.find((social) => social.icon === "Github");
+  const linkedin = socials.find((social) => social.icon === "Linkedin");
 
   return (
-    <section id="contact" className="relative px-4 pb-24 pt-10 sm:px-6 sm:pb-16 sm:pt-16 lg:pb-20 lg:pt-20">
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:80px_80px] opacity-30 [mask-image:radial-gradient(ellipse_75%_45%_at_50%_0%,black,transparent)]"
-      />
-
-      <div className="mx-auto max-w-7xl space-y-8 sm:space-y-10">
-        <header className="grid gap-6 sm:gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
-          <div className="max-w-3xl space-y-5">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="section-kicker"
-            >
-              <span>{contactPage.kicker}</span>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-[clamp(2.5rem,9vw,6.5rem)] font-semibold leading-[0.95] tracking-tight text-white"
-            >
-              {contactPage.heading.map((line) => (
-                <span
-                  key={line.text}
-                  className={`block ${line.gradient ? "text-gradient" : ""}`}
-                >
-                  {line.text}
-                </span>
-              ))}
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="max-w-2xl text-pretty text-base leading-7 text-white/72 sm:text-lg"
-            >
-              {contactPage.intro.split("\n").map((line, index, arr) => (
-                <span key={line}>
-                  {line}
-                  {index < arr.length - 1 && <br />}
-                </span>
-              ))}
-            </motion.p>
+    <section
+      id="contact"
+      className="px-4 pb-24 pt-10 sm:px-6 sm:pb-16 sm:pt-16 lg:pb-20 lg:pt-20"
+    >
+      <div className="mx-auto max-w-7xl space-y-8">
+        <header className="grid gap-6 sm:gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <div className="max-w-2xl space-y-3">
+            <h1 className="text-4xl font-semibold tracking-tight text-white sm:text-6xl">
+              {contactPage.title}
+            </h1>
+            <p className="text-base leading-7 text-white/72 sm:text-lg">
+              {contactPage.intro}
+            </p>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, delay: 0.1 }}
-            className="relative min-h-72 overflow-hidden rounded-4xl border border-white/10 bg-black/20 sm:min-h-[28rem] lg:min-h-[32rem]"
-          >
-            <div className="absolute inset-0 z-0">
-              <PhotoCarousel
-                images={images.gallery}
-                className="h-full"
-                sizes="(min-width: 1024px) 560px, 100vw"
-                imageClassName="object-[50%_20%]"
-                priority
-              />
-            </div>
-
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(5,5,5,0.08)_0%,rgba(5,5,5,0.18)_36%,rgba(5,5,5,0.7)_100%)]"
+          <div className="relative overflow-hidden rounded-4xl border border-white/10 bg-black/20">
+            <PhotoCarousel
+              images={images.gallery}
+              className="h-72 sm:h-[28rem]"
+              sizes="(min-width: 1024px) 560px, 100vw"
+              imageClassName="object-[50%_20%]"
+              priority
             />
-
-            <div className="absolute inset-x-0 bottom-0 z-20 p-5 sm:p-6">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <div className="rounded-full border border-white/10 bg-black/70 px-3 py-1.5 text-xs uppercase tracking-[0.24em] text-white/70 sm:bg-black/35 sm:backdrop-blur-md">
-                  {contactPage.imageBadge}
-                </div>
-              </div>
-            </div>
-          </motion.div>
+          </div>
         </header>
 
-        <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="section-shell p-5 sm:p-8"
+        <div className="section-shell max-w-2xl p-6 sm:p-8">
+          <div className="flex flex-col items-start gap-3 sm:flex-row sm:flex-wrap">
+            <a
+              href={`mailto:${contact.email}`}
+              className="inline-flex max-w-full items-center gap-2 break-all rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5"
             >
-              <div className="flex flex-col items-start gap-4 sm:flex-row sm:justify-between">
-                <div className="space-y-3">
-                  <h2 className="inline-flex items-center gap-2.5 text-2xl font-semibold text-white sm:text-3xl">
-                    <Mail className="h-5 w-5 text-brand-primary" />
-                    {contactPage.emailCardTitle}
-                  </h2>
-                  <p className="max-w-2xl text-sm leading-7 text-white/72 sm:text-base">
-                    {contactPage.emailCardText}
-                  </p>
-                </div>
+              {contact.email}
+              <Mail className="h-4 w-4" />
+            </a>
 
-                <div className="group relative isolate flex max-w-full items-center gap-2.5 overflow-hidden rounded-full border border-white/10 bg-white/[0.04] px-4 py-2.5 text-sm font-medium text-white/90 sm:shrink-0">
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-0 -z-10 translate-x-[-110%] bg-[linear-gradient(100deg,transparent,rgba(255,255,255,0.14),transparent)] transition-transform duration-700 group-hover:translate-x-[110%]"
-                  />
-                  <span className="relative flex h-2.5 w-2.5">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-55" />
-                    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-white" />
-                  </span>
-                  <span className="leading-5">{contactPage.responseTime}</span>
-                </div>
-              </div>
-
-              <div className="mt-6 flex flex-wrap items-center gap-3">
-                <a
-                  href={`mailto:${contact.email}`}
-                  className="inline-flex max-w-full items-center gap-2 break-all rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition-transform hover:-translate-y-0.5"
-                >
-                  {contact.email}
-                  <Mail className="h-4 w-4" />
-                </a>
-
-                {contact.showPhone && contact.phone && (
-                  <a
-                    href={`tel:${contact.phone}`}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white/84 transition-colors hover:bg-white/[0.06]"
-                  >
-                    <Phone className="h-4 w-4 text-brand-signal" />
-                    Quick call
-                  </a>
-                )}
-              </div>
-            </motion.div>
-
-            <div className="grid gap-6 sm:grid-cols-2">
-              <InfoCard
-                icon={<MapPin className="h-5 w-5 text-brand-primary" />}
-                title="Based in"
-                body={contactPage.basedInBody}
-                footer={`${geo.city}, ${geo.country}`}
-              />
-              <InfoCard
-                icon={<Calendar className="h-5 w-5 text-brand-signal" />}
-                title="Timezone"
-                body={contactPage.timezoneBody}
-                footer={geo.timezone ?? ""}
-              />
-            </div>
+            <a
+              href={assetPath(resumeUrl)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.04] px-5 py-3 text-sm font-semibold text-white/84 transition-colors hover:bg-white/[0.06]"
+            >
+              Resume
+              <FileText className="h-4 w-4 text-brand-primary" />
+            </a>
           </div>
 
-          <div className="space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="section-shell p-5 sm:p-8"
-            >
-              <h2 className="text-2xl font-semibold text-white">
-                {contactPage.takeActionTitle}
-              </h2>
-              <p className="mt-3 max-w-xl text-sm leading-7 text-white/72">
-                {contactPage.takeActionText}
-              </p>
-
-              <div className="mt-6 space-y-3">
-                {contactPage.actions.map((action) => {
-                  return (
-                    <ActionLink
-                      key={action.title}
-                      href={action.href}
-                      icon={<Icon name={action.icon} className="h-5 w-5 text-brand-primary" />}
-                      title={action.title}
-                      body={action.body}
-                      external
-                    />
-                  );
-                })}
-              </div>
-            </motion.div>
+          <div className="mt-6 flex flex-wrap items-center gap-5 border-t border-white/10 pt-5 text-sm font-semibold">
+            {github && (
+              <a
+                href={github.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-white/72 transition-colors hover:text-white"
+              >
+                <Github className="h-4 w-4 text-brand-primary" />
+                GitHub
+                <ArrowUpRight className="h-3.5 w-3.5 text-white/35" />
+              </a>
+            )}
+            {linkedin && (
+              <a
+                href={linkedin.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-white/72 transition-colors hover:text-white"
+              >
+                <Linkedin className="h-4 w-4 text-brand-primary" />
+                LinkedIn
+                <ArrowUpRight className="h-3.5 w-3.5 text-white/35" />
+              </a>
+            )}
           </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function InfoCard({
-  icon,
-  title,
-  body,
-  footer,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  body: string;
-  footer: string;
-}) {
-  return (
-    <div className="section-shell p-5">
-      <div className="flex items-center gap-3">
-        <div className="rounded-xl border border-white/10 bg-white/[0.04] p-3">
-          {icon}
-        </div>
-        <div>
-          <h3 className="text-base font-semibold text-white">{title}</h3>
-          <p className="mt-1 text-sm leading-6 text-white/68">{body}</p>
-        </div>
-      </div>
-
-      <p className="mt-5 text-sm uppercase tracking-[0.24em] text-white/45">
-        {footer}
-      </p>
-    </div>
-  );
-}
-
-function ActionLink({
-  href,
-  icon,
-  title,
-  body,
-  external = false,
-}: {
-  href: string;
-  icon: React.ReactNode;
-  title: string;
-  body: string;
-  external?: boolean;
-}) {
-  return (
-    <a
-      href={href}
-      target={external ? "_blank" : undefined}
-      rel={external ? "noopener noreferrer" : undefined}
-      className="group flex items-center justify-between gap-4 rounded-2xl bg-white/[0.04] p-4 transition-colors hover:bg-white/[0.075]"
-    >
-      <div className="flex min-w-0 gap-3">
-        <div className="rounded-xl bg-white/[0.06] p-3">{icon}</div>
-        <div className="min-w-0">
-          <h3 className="text-base font-semibold text-white">{title}</h3>
-          <p className="mt-1 text-sm leading-6 text-white/68">{body}</p>
-        </div>
-      </div>
-
-      <ArrowUpRight className="h-5 w-5 shrink-0 text-white/45 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white" />
-    </a>
   );
 }

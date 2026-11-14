@@ -1,74 +1,32 @@
-"use client";
-
 import * as LucideIcons from "lucide-react";
-import { motion, type Variants } from "framer-motion";
-import {
-  Briefcase,
-  Code2,
-  GraduationCap,
-  MapPin,
-} from "lucide-react";
+import { Briefcase, Code2, GraduationCap, MapPin } from "lucide-react";
 
-import Tooltip from "@/app/components/ui/Tooltip";
 import PhotoCarousel from "@/app/components/ui/PhotoCarousel";
 import { Icon } from "@/app/lib/icons";
 import portfolio from "@/app/lib/config/portfolio";
 
 const skillIcons = {
-  "React.js": LucideIcons.Atom,
-  "Next.js": LucideIcons.Triangle,
-  TypeScript: LucideIcons.FileCode,
   JavaScript: LucideIcons.Braces,
-  "Tailwind CSS": LucideIcons.Palette,
-  "Node.js": LucideIcons.Server,
-  "Express.js": LucideIcons.Rocket,
-  FastAPI: LucideIcons.Zap,
-  Redux: LucideIcons.Workflow,
-  Vite: LucideIcons.Zap,
-  MongoDB: LucideIcons.Database,
-  Redis: LucideIcons.Database,
-  PostgreSQL: LucideIcons.Database,
-  Pinecone: LucideIcons.Boxes,
+  TypeScript: LucideIcons.FileCode,
   Python: LucideIcons.Code2,
   "C++": LucideIcons.Code2,
   SQL: LucideIcons.Database,
-  C: LucideIcons.Code2,
+  React: LucideIcons.Atom,
+  "Next.js": LucideIcons.Triangle,
+  "Node.js": LucideIcons.Server,
+  Express: LucideIcons.Rocket,
+  FastAPI: LucideIcons.Zap,
+  "Tailwind CSS": LucideIcons.Palette,
+  MongoDB: LucideIcons.Database,
+  PostgreSQL: LucideIcons.Database,
+  Redis: LucideIcons.Database,
+  Pinecone: LucideIcons.Boxes,
   Git: LucideIcons.GitBranch,
   GitHub: LucideIcons.Github,
-  GitLab: LucideIcons.Gitlab,
-  Linux: LucideIcons.Terminal,
   Docker: LucideIcons.Container,
   Postman: LucideIcons.Send,
-  "CI/CD": LucideIcons.Workflow,
+  Linux: LucideIcons.Terminal,
   Vercel: LucideIcons.Triangle,
-  Render: LucideIcons.Cloud,
-  Clerk: LucideIcons.ShieldCheck,
-  DSA: LucideIcons.Binary,
-  OOP: LucideIcons.Boxes,
-  "Problem Solving": LucideIcons.Lightbulb,
-  Communication: LucideIcons.MessageCircle,
-  Leadership: LucideIcons.Users,
-  Teamwork: LucideIcons.Users,
-  "Critical Thinking": LucideIcons.Brain,
-  English: LucideIcons.Languages,
-  Hindi: LucideIcons.Languages,
-};
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.09 },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 18 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.45, ease: "easeOut" },
-  },
 };
 
 export default function About() {
@@ -85,14 +43,9 @@ export default function About() {
 
   return (
     <section id="about" className="px-4 pb-24 pt-10 sm:px-6 sm:pb-16 sm:pt-16 lg:pb-20 lg:pt-20">
-      <div className="mx-auto grid max-w-7xl gap-6 sm:gap-8 lg:grid-cols-[340px_1fr] lg:gap-10">
-        <aside className="space-y-4 sm:space-y-5 lg:sticky lg:top-28 lg:h-fit">
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="section-shell p-5 sm:p-6"
-          >
+      <div className="mx-auto grid max-w-7xl gap-8 sm:gap-10 lg:grid-cols-[340px_1fr]">
+        <aside className="space-y-5 lg:sticky lg:top-28 lg:h-fit">
+          <div className="section-shell p-5 sm:p-6">
             <div className="mx-auto w-full max-w-56 overflow-hidden rounded-[1.75rem] border border-white/10 bg-black/20 sm:max-w-60">
               <PhotoCarousel
                 images={images.gallery}
@@ -102,10 +55,7 @@ export default function About() {
               />
             </div>
 
-            <div className="mt-5 space-y-3 text-center sm:mt-6">
-              <p className="text-xs uppercase tracking-[0.24em] text-white/45">
-                {aboutPage.profileBadge}
-              </p>
+            <div className="mt-5 space-y-2 text-center sm:mt-6">
               <h1 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
                 {profile.name}
               </h1>
@@ -115,56 +65,27 @@ export default function About() {
                 <span>{profile.location}</span>
               </div>
             </div>
+          </div>
 
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="grid grid-cols-2 gap-3"
-          >
-            {socials.map((link) => {
-              return (
-                <Tooltip key={link.name} content={link.tooltip ?? ""}>
-                  <a
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="surface flex items-center justify-between gap-3 rounded-2xl px-4 py-3 text-sm text-white/84 transition-colors hover:border-white/18 hover:bg-white/6"
-                  >
-                    <span>{link.name}</span>
-                    <Icon name={link.icon} className="h-4 w-4 text-brand-primary" />
-                  </a>
-                </Tooltip>
-              );
-            })}
-          </motion.div>
+          <div className="grid grid-cols-2 gap-3">
+            {socials.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="surface flex items-center justify-between gap-3 rounded-2xl px-4 py-3 text-sm text-white/84 transition-colors hover:border-white/18 hover:bg-white/6"
+              >
+                <span>{link.name}</span>
+                <Icon name={link.icon} className="h-4 w-4 text-brand-primary" />
+              </a>
+            ))}
+          </div>
         </aside>
 
-        <div className="space-y-8 sm:space-y-12">
-          <motion.section
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={containerVariants}
-            className="section-shell p-5 sm:p-8"
-          >
-            <motion.div
-              variants={itemVariants}
-              className="flex items-center gap-3"
-            >
-              <div className="h-px w-10 bg-(--brand-primary)" />
-              <p className="text-xs uppercase tracking-[0.28em] text-white/50">
-                {aboutPage.introductionTitle}
-              </p>
-            </motion.div>
-
-            <motion.div
-              variants={itemVariants}
-              className="mt-6 space-y-4 text-base leading-7 text-white/75 sm:text-lg"
-            >
+        <div className="space-y-8 sm:space-y-10">
+          <section className="section-shell p-5 sm:p-8">
+            <div className="space-y-4 text-base leading-7 text-white/75">
               {introduction
                 .trim()
                 .split("\n\n")
@@ -172,170 +93,86 @@ export default function About() {
                 .map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
-            </motion.div>
-          </motion.section>
+            </div>
+          </section>
 
           <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
-            <motion.section
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={containerVariants}
-              className="section-shell p-5 sm:p-8"
-            >
-              <motion.div
-                variants={itemVariants}
-                className="flex items-center gap-3"
-              >
+            <section className="section-shell p-5 sm:p-8">
+              <div className="flex items-center gap-3">
                 <Briefcase className="h-5 w-5 text-brand-primary" />
                 <h2 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
                   {aboutPage.experienceTitle}
                 </h2>
-              </motion.div>
+              </div>
 
-              <div className="relative mt-6 space-y-5 pl-8">
+              <div className="relative mt-6 space-y-4 pl-6">
                 <div
                   aria-hidden="true"
-                  className="absolute bottom-6 left-[7px] top-6 w-px bg-[linear-gradient(180deg,rgba(255,255,255,0.16),rgba(255,255,255,0.65))]"
+                  className="absolute bottom-4 left-[5px] top-4 w-px bg-white/12"
                 />
-                {workExperience.map((job) => {
-                  const isCurrent = job.current ?? job.period.includes("Present");
-
-                  return (
-                  <motion.article
+                {workExperience.map((job) => (
+                  <article
                     key={job.title}
-                    variants={itemVariants}
-                    className="relative rounded-2xl bg-white/3 p-5 transition-colors hover:bg-white/5"
+                    className="relative rounded-2xl bg-white/3 p-4 sm:p-5"
                   >
                     <span
                       aria-hidden="true"
-                      className={`absolute -left-[2.05rem] flex h-4 w-4 items-center justify-center ${
-                        isCurrent ? "top-6" : "top-4"
-                      }`}
-                    >
-                      {isCurrent && (
-                        <span className="absolute h-4 w-4 animate-ping rounded-full bg-brand-primary/55" />
-                      )}
-                      <span
-                        className={`relative h-3 w-3 rounded-full ${
-                          isCurrent
-                            ? "bg-brand-primary shadow-[0_0_14px_rgba(91,124,255,0.9)]"
-                            : "bg-white/35"
-                        }`}
-                      />
-                    </span>
-                    <div className="flex flex-wrap items-start justify-between gap-3">
+                      className="absolute -left-[1.45rem] top-6 h-2.5 w-2.5 rounded-full bg-white/35"
+                    />
+                    <div className="flex flex-wrap items-start justify-between gap-2">
                       <div>
                         <p className="text-lg font-semibold text-white">
                           {job.title}
                         </p>
-                        <p className="mt-1 text-sm text-white/65">
+                        <p className="mt-0.5 text-sm text-white/65">
                           {job.company}
                         </p>
                       </div>
-                      <span className="rounded-full border border-white/10 bg-white/3 px-3 py-1 text-xs uppercase tracking-[0.22em] text-white/55">
-                        {job.period}
-                      </span>
+                      <span className="text-xs text-white/50">{job.period}</span>
                     </div>
-                    <p className="mt-4 max-w-2xl text-sm leading-6 text-white/70">
-                      {job.description}
-                    </p>
-                  </motion.article>
-                  );
-                })}
+                    <ul className="mt-3 list-disc space-y-1.5 pl-4 text-sm leading-6 text-white/70 marker:text-white/30">
+                      {job.bullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
+                  </article>
+                ))}
               </div>
-            </motion.section>
+            </section>
 
-            <motion.section
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={containerVariants}
-              className="section-shell p-5 sm:p-8"
-            >
-              <motion.div
-                variants={itemVariants}
-                className="flex items-center gap-3"
-              >
+            <section className="section-shell p-5 sm:p-8">
+              <div className="flex items-center gap-3">
                 <GraduationCap className="h-5 w-5 text-brand-signal" />
                 <h2 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
                   {aboutPage.educationTitle}
                 </h2>
-              </motion.div>
-
-              <div className="relative mt-6 space-y-3 pl-8">
-                <div
-                  aria-hidden="true"
-                  className="absolute bottom-6 left-[7px] top-6 w-px bg-[linear-gradient(180deg,rgba(255,255,255,0.65),rgba(255,255,255,0.16))]"
-                />
-                {education.map((item) => {
-                  const isCurrent = item.current ?? false;
-
-                  return (
-                  <motion.article
-                    key={item.title}
-                    variants={itemVariants}
-                    className="relative rounded-2xl bg-white/3 p-5 transition-colors hover:bg-white/5"
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="absolute -left-[2.05rem] top-4 flex h-4 w-4 items-center justify-center"
-                    >
-                      {isCurrent && (
-                        <span className="absolute h-4 w-4 animate-ping rounded-full bg-brand-primary/55" />
-                      )}
-                      <span
-                        className={`relative h-3 w-3 rounded-full ${
-                          isCurrent
-                            ? "bg-brand-primary shadow-[0_0_14px_rgba(91,124,255,0.9)]"
-                            : "bg-white/35"
-                        }`}
-                      />
-                    </span>
-                    <div className="flex flex-wrap items-start justify-between gap-3">
-                      <div>
-                        <p className="text-base font-semibold text-white">
-                          {item.title}
-                        </p>
-                        <p className="mt-1 text-sm text-white/65">
-                          {item.school}
-                        </p>
-                      </div>
-                      <span className="rounded-full border border-white/10 bg-white/3 px-3 py-1 text-xs text-white/60">
-                        {item.info}
-                      </span>
-                    </div>
-                  </motion.article>
-                  );
-                })}
               </div>
-            </motion.section>
+
+              {education.map((item) => (
+                <p
+                  key={item.title}
+                  className="mt-5 text-base leading-7 text-white/78"
+                >
+                  <span className="font-semibold text-white">{item.title}</span>
+                  {" — "}
+                  {item.school}
+                  {item.info ? ` · ${item.info}` : ""}
+                </p>
+              ))}
+            </section>
           </div>
 
-          <motion.section
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={containerVariants}
-            className="section-shell p-5 sm:p-8"
-          >
-              <motion.div
-                variants={itemVariants}
-                className="flex items-center gap-3"
-              >
-                <Code2 className="h-5 w-5 text-brand-primary" />
-                <h2 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
-                  {aboutPage.skillsTitle}
-                </h2>
-              </motion.div>
+          <section className="section-shell p-5 sm:p-8">
+            <div className="flex items-center gap-3">
+              <Code2 className="h-5 w-5 text-brand-primary" />
+              <h2 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                {aboutPage.skillsTitle}
+              </h2>
+            </div>
 
-            <div className="mt-6 grid gap-x-8 gap-y-6 sm:gap-x-10 sm:gap-y-8 md:grid-cols-2">
+            <div className="mt-6 grid gap-x-8 gap-y-6 md:grid-cols-2">
               {Object.entries(skills).map(([category, categorySkills]) => (
-                <motion.div
-                  key={category}
-                  variants={itemVariants}
-                  className="space-y-3"
-                >
+                <div key={category} className="space-y-3">
                   <div className="flex items-center gap-3">
                     <h3 className="text-xs uppercase tracking-[0.24em] text-white/45">
                       {category}
@@ -344,16 +181,16 @@ export default function About() {
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {categorySkills.map((skill) => {
-                      const Icon =
+                      const SkillIcon =
                         skillIcons[skill as keyof typeof skillIcons] ||
                         LucideIcons.Code2;
 
                       return (
                         <span
                           key={skill}
-                          className="inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/[0.04] px-3 py-1.5 transition-colors hover:border-white/16 hover:bg-white/[0.07] sm:px-3.5 sm:py-2"
+                          className="inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/[0.04] px-3 py-1.5"
                         >
-                          <Icon className="h-3.5 w-3.5 text-brand-primary" />
+                          <SkillIcon className="h-3.5 w-3.5 text-brand-primary" />
                           <span className="text-sm font-medium text-white/85">
                             {skill}
                           </span>
@@ -361,13 +198,14 @@ export default function About() {
                       );
                     })}
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.section>
+
+            <p className="mt-6 text-sm text-white/55">{aboutPage.dsaNote}</p>
+          </section>
         </div>
       </div>
     </section>
   );
 }
-

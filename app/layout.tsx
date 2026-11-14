@@ -5,8 +5,6 @@ import Script from "next/script";
 import "./globals.css";
 import Navigation from "@/app/components/layout/Navigation";
 import Footer from "@/app/components/layout/Footer";
-import MouseGlow from "@/app/components/layout/MouseGlow";
-import ProgressBar from "@/app/components/ui/ProgressBar";
 import { cn } from "@/app/lib/utils/cn";
 import portfolio from "@/app/lib/config/portfolio";
 
@@ -105,11 +103,6 @@ export default function RootLayout({
       )}
     >
       <body className="antialiased app-bg text-foreground overflow-x-hidden transition-colors duration-300">
-        <div aria-hidden="true" className="lamp-beam" />
-
-        <MouseGlow />
-
-        <ProgressBar />
         <Navigation />
 
         <main className="relative z-10 pt-0">{children}</main>

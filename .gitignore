@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local documentation (never push)
+Content.md
+PORTFOLIO_CLEANUP.md

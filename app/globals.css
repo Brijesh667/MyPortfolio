@@ -113,10 +113,6 @@ body {
     @apply rounded-[2rem] bg-white/[0.03] shadow-[0_24px_80px_rgba(0,0,0,0.28)];
   }
 
-  .section-kicker {
-    @apply inline-flex items-center gap-2 rounded-full bg-white/[0.05] px-4 py-2 text-xs uppercase tracking-[0.28em] text-white/70;
-  }
-
   .brand-link {
     color: var(--brand-primary);
   }
@@ -140,98 +136,6 @@ body {
   .brand-signal-bg {
     background-color: var(--brand-signal);
   }
-
-  .text-gradient {
-    @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.98),
-      rgba(255, 255, 255, 0.75)
-    );
-  }
-
-  .lamp-shell {
-    position: fixed;
-    top: -92px;
-    left: 50%;
-    width: 88px;
-    height: 110px;
-    transform: translateX(-50%) translateY(-120px);
-    border-bottom-left-radius: 9999px;
-    border-bottom-right-radius: 9999px;
-    background: linear-gradient(180deg, #2e2e2e 0%, #161616 100%);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 14px 22px rgba(0, 0, 0, 0.55);
-    opacity: 0;
-    transition:
-      transform 420ms ease,
-      opacity 300ms ease;
-    z-index: 45;
-    pointer-events: none;
-  }
-
-  .lamp-shell::before {
-    content: "";
-    position: absolute;
-    top: -60px;
-    left: 50%;
-    width: 4px;
-    height: 62px;
-    transform: translateX(-50%);
-    background: linear-gradient(180deg, #606060 0%, #2f2f2f 100%);
-    border-radius: 9999px;
-  }
-
-  .lamp-beam {
-    position: fixed;
-    top: 8px;
-    left: 50%;
-    width: min(92vw, 740px);
-    height: min(70vh, 560px);
-    transform: translateX(-50%) scaleY(0.35);
-    transform-origin: top center;
-    clip-path: polygon(48% 0%, 52% 0%, 100% 100%, 0% 100%);
-    background: radial-gradient(
-      ellipse at top,
-      rgba(255, 235, 165, 0.42) 0%,
-      rgba(255, 228, 138, 0.24) 35%,
-      rgba(255, 222, 130, 0.1) 65%,
-      rgba(255, 222, 130, 0) 100%
-    );
-    filter: blur(1px);
-    opacity: 0;
-    transition:
-      transform 460ms ease,
-      opacity 360ms ease;
-    z-index: 40;
-    pointer-events: none;
-  }
-
-  html.lamp-on .lamp-shell {
-    transform: translateX(-50%) translateY(95px);
-    opacity: 1;
-  }
-
-  html.lamp-on .lamp-beam {
-    transform: translateX(-50%) scaleY(1);
-    opacity: 1;
-  }
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
 }
 
 @media (max-width: 639px) {
@@ -247,16 +151,9 @@ body {
     box-shadow: none;
   }
 
-  .lamp-beam {
-    width: 100vw;
-    height: 55vh;
-    filter: none;
-  }
-
   .animate-spin,
   .animate-ping,
-  .animate-pulse,
-  .animate-float {
+  .animate-pulse {
     animation: none !important;
   }
 }
