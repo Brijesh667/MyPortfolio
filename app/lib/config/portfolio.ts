@@ -206,6 +206,7 @@ const portfolio: PortfolioConfig = {
   aboutPage: {
     experienceTitle: "Work Experience",
     educationTitle: "Education",
+    achievementsTitle: "Achievements",
     skillsTitle: "Skills",
     dsaNote:
       "250+ DSA problems solved in C++ (LeetCode + GeeksforGeeks).",
@@ -263,7 +264,19 @@ In 2025 my team won 1st place at Smart India Hackathon with Prashikshak, a train
     {
       title: "B.Tech, Information Technology",
       school: "Central University Bilaspur (GGU)",
-      info: "2023–2027 · CGPA 7.46",
+      period: "2023 — 2027",
+      cgpa: "CGPA 7.46",
+    },
+  ],
+
+  achievements: [
+    {
+      title: "Smart India Hackathon 2025",
+      subtext: "1st place among 500+ teams",
+    },
+    {
+      title: "250+ DSA problems solved in C++",
+      subtext: "LeetCode and GeeksforGeeks",
     },
   ],
 

@@ -1,5 +1,5 @@
 import * as LucideIcons from "lucide-react";
-import { Briefcase, Code2, GraduationCap, MapPin } from "lucide-react";
+import { Briefcase, Code2, GraduationCap, MapPin, Trophy } from "lucide-react";
 
 import PhotoCarousel from "@/app/components/ui/PhotoCarousel";
 import { Icon } from "@/app/lib/icons";
@@ -37,6 +37,7 @@ export default function AboutSection() {
     introduction,
     workExperience,
     education,
+    achievements,
     skills,
     aboutPage,
   } = portfolio;
@@ -96,7 +97,7 @@ export default function AboutSection() {
             </div>
           </section>
 
-          <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
+          <div className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr] xl:items-start">
             <section className="section-shell p-5 sm:p-8">
               <div className="flex items-center gap-3">
                 <Briefcase className="h-5 w-5 text-brand-primary" />
@@ -140,26 +141,84 @@ export default function AboutSection() {
               </div>
             </section>
 
-            <section className="section-shell p-5 sm:p-8">
-              <div className="flex items-center gap-3">
-                <GraduationCap className="h-5 w-5 text-brand-signal" />
-                <h2 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
-                  {aboutPage.educationTitle}
-                </h2>
-              </div>
+            <div className="space-y-4">
+              <section className="section-shell p-5 sm:p-8">
+                <div className="flex items-center gap-3">
+                  <GraduationCap className="h-5 w-5 text-brand-signal" />
+                  <h2 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                    {aboutPage.educationTitle}
+                  </h2>
+                </div>
 
-              {education.map((item) => (
-                <p
-                  key={item.title}
-                  className="mt-5 text-base leading-7 text-white/78"
-                >
-                  <span className="font-semibold text-white">{item.title}</span>
-                  {" — "}
-                  {item.school}
-                  {item.info ? ` · ${item.info}` : ""}
-                </p>
-              ))}
-            </section>
+                <div className="relative mt-5 pl-6">
+                  <div
+                    aria-hidden="true"
+                    className="absolute bottom-4 left-[5px] top-4 w-px bg-white/12"
+                  />
+                  {education.map((item) => (
+                    <article
+                      key={item.title}
+                      className="relative rounded-2xl bg-white/3 p-4 sm:p-5"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="absolute -left-[1.45rem] top-6 h-2.5 w-2.5 rounded-full bg-white/35"
+                      />
+                      <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-2">
+                        <p className="text-lg font-semibold text-white">
+                          {item.title}
+                        </p>
+                        <span className="text-xs text-white/50">
+                          {item.period}
+                        </span>
+                      </div>
+                      <p className="mt-0.5 text-sm text-white/65">
+                        {item.school}
+                      </p>
+                      {item.cgpa && (
+                        <span className="mt-3 inline-flex rounded-full border border-neutral-800 px-2.5 py-1 text-sm text-white/70">
+                          {item.cgpa}
+                        </span>
+                      )}
+                    </article>
+                  ))}
+                </div>
+              </section>
+
+              <section className="section-shell p-5 sm:p-8">
+                <div className="flex items-center gap-3">
+                  <Trophy className="h-5 w-5 text-brand-signal" />
+                  <h2 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                    {aboutPage.achievementsTitle}
+                  </h2>
+                </div>
+
+                <div className="mt-5 space-y-3">
+                  {achievements.map((item, index) => {
+                    const RowIcon = index === 0 ? Trophy : Code2;
+
+                    return (
+                      <div
+                        key={item.title}
+                        className="flex items-start gap-3 rounded-xl bg-white/3 p-4"
+                      >
+                        <div className="rounded-lg bg-white/[0.06] p-2">
+                          <RowIcon className="h-4 w-4 text-brand-primary" />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-sm font-medium text-white">
+                            {item.title}
+                          </p>
+                          <p className="mt-1 text-sm text-white/55">
+                            {item.subtext}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            </div>
           </div>
 
           <section className="section-shell p-5 sm:p-8">

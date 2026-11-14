@@ -43,7 +43,13 @@ export interface HeroStat {
 export interface EducationItem {
   title: string;
   school: string;
-  info?: string;
+  period: string;
+  cgpa?: string;
+}
+
+export interface AchievementItem {
+  title: string;
+  subtext: string;
 }
 
 export interface WorkExperienceItem {
@@ -102,6 +108,7 @@ export interface ImagesConfig {
 export interface AboutPageConfig {
   experienceTitle: string;
   educationTitle: string;
+  achievementsTitle: string;
   skillsTitle: string;
   dsaNote: string;
 }
@@ -149,5 +156,6 @@ export interface PortfolioConfig {
   introduction: string;
   workExperience: WorkExperienceItem[];
   education: EducationItem[];
+  achievements: AchievementItem[];
   skills: Record<string, string[]>;
 }
