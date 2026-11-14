@@ -11,6 +11,10 @@ import {
 } from "lucide-react";
 
 import { assetPath } from "@/app/lib/utils/assetPath";
+import {
+  checkRateLimit,
+  recordSuccessfulSend,
+} from "@/app/lib/utils/rateLimit";
 import portfolio from "@/app/lib/config/portfolio";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -24,6 +28,7 @@ export default function ContactSection() {
   const [open, setOpen] = useState(false);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
+  const [botcheck, setBotcheck] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -31,6 +36,7 @@ export default function ContactSection() {
 
   const copyTimeout = useRef<number | null>(null);
   const nameRef = useRef<HTMLInputElement>(null);
+  const panelOpenedAt = useRef<number | null>(null);
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
@@ -38,6 +44,10 @@ export default function ContactSection() {
       if (copyTimeout.current) window.clearTimeout(copyTimeout.current);
     };
   }, []);
+
+  useEffect(() => {
+    if (open) panelOpenedAt.current = Date.now();
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -51,7 +61,7 @@ export default function ContactSection() {
   }, [open]);
 
   useEffect(() => {
-    if (!open || sent) return;
+    if (!open) return;
 
     const timeout = window.setTimeout(
       () => nameRef.current?.focus(),
@@ -59,7 +69,7 @@ export default function ContactSection() {
     );
 
     return () => window.clearTimeout(timeout);
-  }, [open, reduceMotion, sent]);
+  }, [open, reduceMotion]);
 
   const handleCopy = async () => {
     const fallbackCopy = () => {
@@ -97,25 +107,91 @@ export default function ContactSection() {
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (sending) return;
 
-    if (!name.trim() || !email.trim() || !message.trim()) {
+    if (
+      botcheck ||
+      (panelOpenedAt.current !== null &&
+        Date.now() - panelOpenedAt.current < 3000)
+    ) {
+      setError("");
+      setSent(true);
+      return;
+    }
+
+    const trimmedName = name.trim();
+    const trimmedEmail = email.trim();
+    const trimmedMessage = message.trim();
+
+    if (!trimmedName || !trimmedEmail || !trimmedMessage) {
       setError("Fill in all three fields.");
       return;
     }
 
-    if (!emailPattern.test(email.trim())) {
+    if (trimmedMessage.length < 10 || trimmedMessage.length > 1000) {
+      setError("Message must be 10 to 1000 characters.");
+      return;
+    }
+
+    if (!emailPattern.test(trimmedEmail)) {
       setError("Enter a valid email address.");
+      return;
+    }
+
+    const rateLimit = checkRateLimit();
+    if (!rateLimit.allowed) {
+      setError(rateLimit.message);
+      return;
+    }
+
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+
+    if (!accessKey || accessKey === "PASTE_YOUR_KEY_HERE") {
+      if (process.env.NODE_ENV === "development") {
+        console.warn(
+          "Contact form is not configured: NEXT_PUBLIC_WEB3FORMS_KEY is missing.",
+        );
+      }
+      setError("Contact form is not configured.");
       return;
     }
 
     setError("");
     setSending(true);
 
-    // Replace this simulated delay with real sending logic later.
-    await new Promise((resolve) => window.setTimeout(resolve, 1000));
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: trimmedName,
+          email: trimmedEmail,
+          message: trimmedMessage,
+          subject: "New message from portfolio",
+          from_name: "Portfolio contact form",
+          botcheck,
+        }),
+      });
 
-    setSending(false);
-    setSent(true);
+      const data = await response.json().catch(() => null);
+
+      if (!response.ok || data?.success !== true) {
+        throw new Error("Web3Forms request failed");
+      }
+
+      recordSuccessfulSend();
+      setSent(true);
+    } catch {
+      setError(
+        "Could not send the message. Try again or email me directly.",
+      );
+    } finally {
+      setSending(false);
+    }
   };
 
   const resetForm = () => {
@@ -123,6 +199,7 @@ export default function ContactSection() {
     setEmail("");
     setMessage("");
     setError("");
+    setBotcheck(false);
     setSending(false);
     setSent(false);
     window.requestAnimationFrame(() => nameRef.current?.focus());
@@ -214,6 +291,17 @@ export default function ContactSection() {
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} noValidate className="space-y-4">
+                      <input
+                        type="checkbox"
+                        name="botcheck"
+                        checked={botcheck}
+                        onChange={(event) => setBotcheck(event.target.checked)}
+                        tabIndex={-1}
+                        aria-hidden="true"
+                        autoComplete="off"
+                        className="sr-only"
+                      />
+
                       <div className="grid gap-4 sm:grid-cols-2">
                         <div className="space-y-1.5">
                           <label
@@ -228,6 +316,7 @@ export default function ContactSection() {
                             name="name"
                             type="text"
                             value={name}
+                            maxLength={100}
                             onChange={(event) => {
                               setName(event.target.value);
                               clearError();
@@ -249,6 +338,7 @@ export default function ContactSection() {
                             name="email"
                             type="email"
                             value={email}
+                            maxLength={150}
                             onChange={(event) => {
                               setEmail(event.target.value);
                               clearError();
@@ -271,6 +361,8 @@ export default function ContactSection() {
                           name="message"
                           rows={4}
                           value={message}
+                          minLength={10}
+                          maxLength={1000}
                           onChange={(event) => {
                             setMessage(event.target.value);
                             clearError();

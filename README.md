@@ -84,14 +84,23 @@ sitemap, and the Open Graph images all read from the config.
 
 ## Environment variables
 
-Both integrations are optional:
+Copy `.env.example` to `.env.local`:
 
 ```env
+NEXT_PUBLIC_WEB3FORMS_KEY=
 UMAMI_ID=
 GOOGLE_VERIFICATION=
 ```
 
-Create `.env.local` in the project root if you want to enable them.
+- `NEXT_PUBLIC_WEB3FORMS_KEY` is required for the contact form. Get an access
+  key from [web3forms.com](https://web3forms.com).
+- `UMAMI_ID` and `GOOGLE_VERIFICATION` are optional.
+
+For GitHub Pages, add the Web3Forms key as a repository secret named
+`WEB3FORMS_KEY` under **Settings → Secrets and variables → Actions**. The
+deploy workflow passes it to the build as `NEXT_PUBLIC_WEB3FORMS_KEY`.
+
+`.env.local` is ignored by git; `.env.example` is safe to commit.
 
 ## Build
 
