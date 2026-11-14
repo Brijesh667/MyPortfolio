@@ -6,7 +6,6 @@ const portfolio: PortfolioConfig = {
   profile: {
     name: "Brijesh Kumar",
     role: "Full-Stack Developer",
-    availability: "Open to full-stack and AI roles.",
     location: "Bilaspur, India",
   },
 
@@ -18,7 +17,6 @@ const portfolio: PortfolioConfig = {
 
   images: {
     hero: "/images/brijesh-profile.webp",
-    seoFallback: "/images/brijesh-profile.webp",
     gallery: [
       { src: "/images/brijesh-profile.webp", alt: "Brijesh Kumar portrait" },
       { src: "/images/iitkgp-1.webp", alt: "IIT Kharagpur campus building" },
@@ -91,28 +89,25 @@ const portfolio: PortfolioConfig = {
   hero: {
     heading: "Hi, I'm Brijesh.",
     subtitle:
-      "Full-stack developer (MERN) and research intern at IIT Kharagpur. I build web apps and AI tools, and I measure whether they actually work.",
-    primaryCta: { label: "View projects", href: "/projects", icon: "ArrowRight" },
+      "Full-stack developer (MERN) and research intern at IIT Kharagpur, where I stress-test Google's A2A protocol for multi-agent systems. I also build web apps and AI tools.",
+    primaryCta: { label: "View projects", href: "#projects", icon: "ArrowRight" },
     resumeCta: { label: "Resume", href: "/resume.pdf", icon: "FileText" },
-    contactCta: { label: "Contact", href: "/contact" },
   },
 
   heroStats: [
     { value: "SIH 2025", label: "1st place, 500+ teams" },
     { value: "IIT Kharagpur", label: "Research intern" },
-    { value: "4", label: "Projects" },
   ],
 
   home: {
     projectsTitle: "Projects",
-    allProjectsLabel: "All projects",
   },
 
   navigation: [
-    { label: "Home", href: "/", icon: "Home" },
-    { label: "About", href: "/about", icon: "User" },
-    { label: "Projects", href: "/projects", icon: "Briefcase" },
-    { label: "Contact", href: "/contact", icon: "Mail" },
+    { label: "Home", href: "#home", icon: "Home" },
+    { label: "Projects", href: "#projects", icon: "Briefcase" },
+    { label: "About", href: "#about", icon: "User" },
+    { label: "Contact", href: "#contact", icon: "Mail" },
   ],
 
   footer: {
@@ -208,13 +203,6 @@ const portfolio: PortfolioConfig = {
     },
   ],
 
-  projectsPage: {
-    title: "Projects",
-    summary:
-      "Four projects: two AI tools, a fitness tracker and my SIH-winning portal.",
-    moreCtaLabel: "More on GitHub",
-  },
-
   aboutPage: {
     experienceTitle: "Work Experience",
     educationTitle: "Education",
@@ -224,9 +212,9 @@ const portfolio: PortfolioConfig = {
   },
 
   contactPage: {
-    title: "Contact",
+    title: "Let's talk.",
     intro:
-      "Email is the fastest way to reach me. I'm open to full-stack and AI roles.",
+      "Open to internships, full-time roles and project work.\nEmail is the fastest way to reach me.",
   },
 
   openGraph: {
@@ -234,19 +222,6 @@ const portfolio: PortfolioConfig = {
       role: "Full-Stack Developer",
       description:
         "MERN full-stack developer and research intern at IIT Kharagpur. SIH 2025 winner.",
-    },
-    about: {
-      subtitle: "About Brijesh",
-      description: "Background, experience, education and skills.",
-    },
-    projects: {
-      subtitle: "Projects",
-      description:
-        "AI fact-checking, job search, fitness tracking and a SIH-winning portal.",
-    },
-    contact: {
-      subtitle: "Contact",
-      description: "Email, resume, GitHub and LinkedIn.",
     },
   },
 

@@ -28,7 +28,6 @@ export interface GeoConfig {
 export interface ProfileConfig {
   name: string;
   role: string;
-  availability?: string;
   location: string;
 }
 
@@ -97,14 +96,7 @@ export interface GalleryImage {
 
 export interface ImagesConfig {
   hero: string;
-  seoFallback: string;
   gallery: GalleryImage[];
-}
-
-export interface ProjectsPageConfig {
-  title: string;
-  summary: string;
-  moreCtaLabel: string;
 }
 
 export interface AboutPageConfig {
@@ -138,29 +130,20 @@ export interface PortfolioConfig {
     subtitle: string;
     primaryCta: CtaItem;
     resumeCta: CtaItem;
-    contactCta: {
-      label: string;
-      href: string;
-    };
   };
   heroStats: HeroStat[];
   home: {
     projectsTitle: string;
-    allProjectsLabel: string;
   };
   navigation: NavItem[];
   footer: {
     copyright: string;
   };
   projects: Project[];
-  projectsPage: ProjectsPageConfig;
   aboutPage: AboutPageConfig;
   contactPage: ContactPageConfig;
   openGraph: {
     home: OpenGraphCopy;
-    about: OpenGraphCopy;
-    projects: OpenGraphCopy;
-    contact: OpenGraphCopy;
   };
   sections: SectionsConfig;
   introduction: string;

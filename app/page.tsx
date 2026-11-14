@@ -1,5 +1,7 @@
 import Hero from "@/app/components/sections/Hero";
-import HomeSections from "@/app/components/sections/HomeSections";
+import ProjectsSection from "@/app/components/sections/ProjectsSection";
+import AboutSection from "@/app/components/sections/AboutSection";
+import ContactSection from "@/app/components/sections/ContactSection";
 import { Metadata } from "next";
 import portfolio from "@/app/lib/config/portfolio";
 
@@ -74,7 +76,9 @@ export default function Home() {
         }}
       />
       <Hero />
-      <HomeSections />
+      <ProjectsSection />
+      <AboutSection />
+      <ContactSection />
     </>
   );
 }

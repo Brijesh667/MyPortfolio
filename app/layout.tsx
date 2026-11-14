@@ -5,6 +5,7 @@ import Script from "next/script";
 import "./globals.css";
 import Navigation from "@/app/components/layout/Navigation";
 import Footer from "@/app/components/layout/Footer";
+import ScrollProgress from "@/app/components/ui/ScrollProgress";
 import { cn } from "@/app/lib/utils/cn";
 import portfolio from "@/app/lib/config/portfolio";
 
@@ -103,6 +104,7 @@ export default function RootLayout({
       )}
     >
       <body className="antialiased app-bg text-foreground overflow-x-hidden transition-colors duration-300">
+        <ScrollProgress />
         <Navigation />
 
         <main className="relative z-10 pt-0">{children}</main>

@@ -1,9 +1,9 @@
 "use client";
 
-import Link from "next/link";
 import { motion } from "framer-motion";
 
 import OptimizedImage from "@/app/components/ui/OptimizedImage";
+import { InteractiveGridPattern } from "@/app/components/ui/interactive-grid-pattern";
 import { Icon } from "@/app/lib/icons";
 import { assetPath } from "@/app/lib/utils/assetPath";
 import portfolio from "@/app/lib/config/portfolio";
@@ -16,11 +16,21 @@ export default function Hero() {
       id="home"
       className="relative overflow-hidden px-4 pb-12 pt-8 sm:px-6 sm:pb-16 sm:pt-12 lg:pb-20"
     >
+      <InteractiveGridPattern
+        aria-hidden="true"
+        width={48}
+        height={48}
+        squares={[30, 20]}
+        viewBox="0 0 1440 960"
+        preserveAspectRatio="xMidYMid slice"
+        className="absolute inset-0 h-full w-full border-0 opacity-60 [mask-image:radial-gradient(ellipse_85%_70%_at_50%_0%,black,transparent)]"
+        squaresClassName="stroke-white/[0.07]"
+      />
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-14"
+        className="relative z-10 mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-14"
       >
         <div className="space-y-6 sm:space-y-8">
           <h1 className="max-w-2xl text-[clamp(2.5rem,6vw,5rem)] font-semibold leading-[1.02] tracking-tight text-white">
@@ -43,13 +53,13 @@ export default function Hero() {
           </div>
 
           <div className="flex flex-wrap items-center gap-3">
-            <Link
+            <a
               href={hero.primaryCta.href}
               className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition-transform duration-300 hover:-translate-y-0.5"
             >
               {hero.primaryCta.label}
               <Icon name={hero.primaryCta.icon} className="h-4 w-4" />
-            </Link>
+            </a>
             <a
               href={assetPath(resumeUrl)}
               target="_blank"
@@ -59,20 +69,10 @@ export default function Hero() {
               {hero.resumeCta.label}
               <Icon name={hero.resumeCta.icon} className="h-4 w-4" />
             </a>
-            <Link
-              href={hero.contactCta.href}
-              className="text-sm font-semibold text-white/70 underline-offset-4 transition-colors hover:text-white hover:underline"
-            >
-              {hero.contactCta.label}
-            </Link>
           </div>
-
-          {profile.availability && (
-            <p className="text-sm text-white/55">{profile.availability}</p>
-          )}
         </div>
 
-        <div className="overflow-hidden rounded-4xl border border-white/10 bg-black/20">
+        <div className="overflow-hidden rounded-4xl border border-white/10 bg-black/20 lg:mt-10">
           <div className="relative min-h-80 sm:min-h-[30rem]">
             <OptimizedImage
               src={images.hero}

@@ -5,14 +5,24 @@ Bilaspur, India. Built on the open-source
 [portfolio-template](https://github.com/sabin-paudel/portfolio-template) by
 [Sabin Paudel](https://sabinpaudel.com.np), then rewritten with custom content.
 
-## Pages
+## Single-page layout
 
-| Route | Content |
-| --- | --- |
-| `/` | Hero, project cards, footer |
-| `/about` | Introduction, experience, education, skills |
-| `/projects` | Four projects with metrics and live/source links |
-| `/contact` | Email, resume, GitHub, LinkedIn |
+Everything lives on `/` as four scroll sections:
+
+| Section | Anchor | Content |
+| --- | --- | --- |
+| Home | `#home` | Hero, stats, resume/project buttons |
+| Projects | `#projects` | Four projects |
+| About | `#about` | Intro, experience, education, skills |
+| Contact | `#contact` | Email, resume, GitHub, LinkedIn |
+
+The navbar follows the section in view (scrollspy) and all links use smooth
+scrolling. A thin progress line at the top fills as the page scrolls. The hero
+uses an interactive grid-pattern background and project cards use a
+hover-animated `Live` button. The old `/about`, `/projects` and `/contact` URLs
+redirect to their matching section.
+
+Footer: home page only (`©` line + GitHub · LinkedIn · Email).
 
 ## Tech stack
 
