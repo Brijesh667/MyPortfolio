@@ -34,7 +34,7 @@ jobs:
         run: npm run build
         env:
           GITHUB_PAGES: "true"
-          NEXT_PUBLIC_WEB3FORMS_KEY: ${{ secrets.098cf6de-35b0-44a7-9fdd-2dff3c48e20a }}
+          NEXT_PUBLIC_WEB3FORMS_KEY: ${{ secrets.WEB3FORMS_KEY }}
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
