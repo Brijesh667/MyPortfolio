@@ -1,0 +1,266 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Theme tokens ---------- */
+:root {
+  --bg: #08090c;
+  --bg-soft: #0b0d12;
+  --surface: #101218;
+  --surface-2: #151822;
+  --fg: #ecedf2;
+  --muted: #9a9dab;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.18);
+  --accent: #6366f1;
+  --accent-strong: #4f46e5;
+  --accent-soft: rgba(99, 102, 241, 0.13);
+  --accent-border: rgba(99, 102, 241, 0.38);
+  --accent-text: #a5b4fc;
+  --accent-ink: #ffffff;
+  --success: #34d399;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #08090c;
+  --bg-soft: #0b0d12;
+  --surface: #101218;
+  --surface-2: #151822;
+  --fg: #ecedf2;
+  --muted: #9a9dab;
+  --line: rgba(255, 255, 255, 0.09);
+  --line-strong: rgba(255, 255, 255, 0.18);
+  --accent: #6366f1;
+  --accent-strong: #4f46e5;
+  --accent-soft: rgba(99, 102, 241, 0.14);
+  --accent-border: rgba(99, 102, 241, 0.42);
+  --accent-text: #a5b4fc;
+  --accent-ink: #ffffff;
+  --success: #34d399;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f7f7fb;
+  --bg-soft: #f0f0f7;
+  --surface: #ffffff;
+  --surface-2: #f2f2f9;
+  --fg: #15161c;
+  --muted: #5c5f6f;
+  --line: rgba(18, 20, 30, 0.1);
+  --line-strong: rgba(18, 20, 30, 0.2);
+  --accent: #5b5ee8;
+  --accent-strong: #4f46e5;
+  --accent-soft: rgba(99, 102, 241, 0.1);
+  --accent-border: rgba(79, 70, 229, 0.35);
+  --accent-text: #4f46e5;
+  --accent-ink: #ffffff;
+  --success: #059669;
+}
+
+/* ---------- Base ---------- */
+@layer base {
+  *,
+  ::before,
+  ::after {
+    border-color: var(--line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-bg font-sans text-fg antialiased;
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  section[id] {
+    scroll-margin-top: 92px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--line-strong);
+    border-radius: 999px;
+  }
+}
+
+/* ---------- Reusable pieces ---------- */
+@layer components {
+  .field {
+    @apply w-full rounded-xl border border-line bg-bg px-4 py-3 text-sm text-fg placeholder:text-muted;
+    @apply focus:border-accent focus:outline-none focus:ring-2 focus:ring-[color:var(--accent-soft)];
+  }
+
+  .label {
+    @apply mb-2 block text-xs font-medium text-muted;
+  }
+}
+
+.noscript {
+  max-width: 36rem;
+  margin: 15vh auto;
+  padding: 2rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--surface);
+  color: var(--fg);
+  font-family: Inter, system-ui, sans-serif;
+  line-height: 1.7;
+}
+
+.noscript a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Markdown / project details ---------- */
+.project-prose {
+  --tw-prose-body: var(--muted);
+  --tw-prose-headings: var(--fg);
+  --tw-prose-links: var(--accent);
+  --tw-prose-bold: var(--fg);
+  --tw-prose-counters: var(--muted);
+  --tw-prose-bullets: var(--accent);
+  --tw-prose-hr: var(--line);
+  --tw-prose-quotes: var(--fg);
+  --tw-prose-quote-borders: var(--accent);
+  --tw-prose-code: var(--fg);
+  --tw-prose-pre-bg: #0b0d13;
+  --tw-prose-pre-code: #e6e8ef;
+  --tw-prose-th-borders: var(--line-strong);
+  --tw-prose-td-borders: var(--line);
+}
+
+.project-prose :where(h2, h3) {
+  scroll-margin-top: 100px;
+}
+
+.project-prose :where(p, li) {
+  line-height: 1.75;
+}
+
+.project-prose :where(a) {
+  text-underline-offset: 3px;
+  font-weight: 500;
+}
+
+.project-prose :where(pre) {
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  padding: 1.15rem 1.25rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+}
+
+.project-prose :where(code):not(:where(pre code)) {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 0.35rem;
+  padding: 0.12rem 0.35rem;
+  font-size: 0.86em;
+  font-weight: 500;
+}
+
+.project-prose :where(code):not(:where(pre code))::before,
+.project-prose :where(code):not(:where(pre code))::after {
+  content: "";
+}
+
+.project-prose :where(img) {
+  border-radius: 0.9rem;
+  border: 1px solid var(--line);
+}
+
+.project-prose :where(table) {
+  font-size: 0.9rem;
+}
+
+.project-prose :where(blockquote) {
+  font-style: normal;
+  border-left-width: 2px;
+  background: var(--surface-2);
+  border-radius: 0 0.6rem 0.6rem 0;
+  padding: 0.2rem 1rem;
+}
+
+.project-prose :where(blockquote p)::before,
+.project-prose :where(blockquote p)::after {
+  content: "";
+}
+
+.mermaid-diagram {
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  background: var(--surface);
+  padding: 1.25rem;
+}
+
+.mermaid-diagram svg {
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Sticky header: translucent blur, solid fallback. */
+.site-header {
+  background: var(--bg);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+}
+
+
+/* Mermaid edge labels inherit the diagram theme; force readable labels. */
+.mermaid-diagram .edgeLabel,
+.mermaid-diagram .edgeLabel p {
+  color: var(--fg) !important;
+  background-color: var(--surface) !important;
+}
+
+.mermaid-diagram .edgeLabel rect {
+  fill: var(--surface) !important;
+}

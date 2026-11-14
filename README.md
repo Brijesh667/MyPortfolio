@@ -1,15 +1,19 @@
 # Brijesh Kumar — Portfolio
 
-**Live site:** [https://brijesh667.github.io/MyPortfolio/](https://brijesh667.github.io/MyPortfolio/)
+Recruiter-focused portfolio for **Brijesh Kumar** — MERN full-stack developer and Agentic AI researcher at IIT Kharagpur.
 
-A React + TypeScript portfolio built from `Updated_resume.pdf`. Vite powers the dev server and production build; there is no backend and no database.
+**Live site:** [https://brijesh667.github.io/MyPortfolio/](https://brijesh667.github.io/MyPortfolio/)
 
 ## Stack
 
-- **React 19** with TypeScript
-- **Vite 8** for dev/build
-- Plain CSS with design tokens (no UI framework)
-- Google Fonts: Space Grotesk, Inter, Instrument Serif, JetBrains Mono
+- **React 18 + Vite** (JavaScript/JSX)
+- **Tailwind CSS** with CSS variable theme tokens
+- **react-router-dom** — `/` and `/projects/:slug`
+- **framer-motion** — reveals, count-up, slider fades, lightbox, timeline
+- **react-icons**
+- **react-markdown + remark-gfm + rehype-highlight + rehype-slug**
+- **mermaid** — lazy-loaded in project detail pages
+- **Web3Forms** — contact form (frontend only)
 
 ## Run locally
 
@@ -18,33 +22,31 @@ npm install
 npm run dev
 ```
 
-Open the URL printed by Vite (usually `http://localhost:5173`).
+Open `http://localhost:5173`.
 
 ## Build & preview
 
 ```bash
-npm run build   # type-checks, then outputs a production build to dist/
-npm run preview # serves dist/ locally
+npm run build        # production build → dist/
+npm run preview      # serve dist/ locally
+npm run build:pages  # GitHub Pages build + 404.html fallback
 ```
 
-To preview exactly like GitHub Pages, build with the base path:
+To preview the GitHub Pages base path locally (after `build:pages`), serve `dist` under `/MyPortfolio/` and fall back to `dist/404.html` for unknown paths.
 
-```bash
-npm run build -- --base=/MyPortfolio/
-npm run preview
-```
+## Deploy
 
-## Deploy a live link
+### GitHub Pages (current)
 
-### GitHub Pages (current setup)
+Live at **https://brijesh667.github.io/MyPortfolio/**.
 
-This repository is already configured to deploy to GitHub Pages on every push to `main`:
+The workflow in `.github/workflows/deploy.yml` runs on every push to `main`:
 
-**Live URL:** https://brijesh667.github.io/MyPortfolio/
+1. installs dependencies,
+2. runs `npm run build:pages` (base path `/MyPortfolio/` + copies `index.html` to `404.html` so deep links work),
+3. deploys the artifact through GitHub Actions.
 
-The workflow lives in `.github/workflows/deploy.yml`. It builds with the project base path `--base=/MyPortfolio/`, uploads `dist/`, and deploys it through GitHub Actions.
-
-To publish an update:
+Push an update:
 
 ```bash
 git add .
@@ -52,123 +54,100 @@ git commit -m "Update portfolio"
 git push origin main
 ```
 
-The site redeploys automatically in about a minute. You can watch it under the repository's **Actions** tab.
+Watch progress under the repo's **Actions** tab. If the repo is renamed, update `--base=/MyPortfolio/` in `package.json` (`build:pages`), the canonical/OG URLs in `index.html`, and the JSON-LD `url`.
 
-If the repository is renamed, update these in the same commit:
+### Vercel
 
-- `--base=/MyPortfolio/` in `.github/workflows/deploy.yml`
-- The canonical, `og:url`, `og:image`, and `twitter:image` URLs in `index.html`
-- The `Person` JSON-LD `url` in `index.html`
-
-### Vercel (alternative)
-
-1. Import the repository at [vercel.com/new](https://vercel.com/new).
-2. Vercel auto-detects Vite. Keep the defaults:
-   - **Build command:** `npm run build`
-   - **Output directory:** `dist`
-3. Deploy. Every push to the main branch redeploys automatically.
-
-Vercel serves from `/`, so the `--base` flag is only needed for GitHub Pages.
-
-### Netlify (alternative)
+Import the repo at [vercel.com/new](https://vercel.com/new). Vercel detects Vite automatically:
 
 - **Build command:** `npm run build`
-- **Publish directory:** `dist`
+- **Output directory:** `dist`
 
-### After using a custom domain
-
-1. Add the production URL to `<link rel="canonical">` and `<meta property="og:url">` in `index.html`.
-2. Change `og:image` and `twitter:image` to absolute URLs on that domain.
-3. Update the base path in the Pages workflow if the site moves to a root domain.
-4. Re-deploy.
+`vercel.json` rewrites every path to `/index.html`, so `/projects/:slug` works on refresh. Vercel serves from `/`, so no base path is needed there. Update the canonical and OG URLs in `index.html` if you switch to a custom domain.
 
 ## Project structure
 
 ```
 .
-├── .github/workflows/deploy.yml  # GitHub Pages deployment
-├── index.html                  # Meta tags, theme bootstrap, JSON-LD
-├── src/
-│   ├── main.tsx                # React entry point
-│   ├── App.tsx                 # Page composition
-│   ├── styles.css              # Design tokens + all styling
-│   ├── data/portfolio.ts       # ← All text, projects, links, skills
-│   ├── types.ts                # Shared TypeScript types
-│   ├── components/             # Header, Hero, Work, Experience, etc.
-│   └── hooks/                  # Theme + copy-email hooks
-├── public/
-│   ├── resume.pdf              # Downloadable resume
-│   ├── og.png                  # 1200×630 social preview
-│   ├── favicon.svg
-│   └── apple-touch-icon.png
-├── Updated_resume.pdf          # Original resume
-└── README.md
+├─ public/
+│  ├─ resume/Brijesh_Kumar_Resume.pdf        # replace with the current resume
+│  ├─ certificates/iitkgp-internship.pdf     # placeholder certificate
+│  └─ images/
+│     ├─ profile.webp                        # placeholder profile photo
+│     ├─ og.png
+│     ├─ sih/sih-1.webp … sih-5.webp         # 3:2 placeholders
+│     └─ projects/<slug>/shot-1.webp … 4     # 16:9 placeholders
+├─ src/
+│  ├─ components/
+│  │  ├─ layout/ Header, MobileMenu, Footer
+│  │  ├─ sections/ Hero, About, Experience, Projects, Skills, Achievements, Education, Contact
+│  │  └─ ui/ Section, SectionHeading, Chip, TechChip, Button, Reveal, CountUp, ImageSlider, Lightbox, …
+│  ├─ content/projects/ 4 markdown case studies
+│  ├─ data/ site, experience, projects, skills, achievements, education
+│  ├─ hooks/ useTheme, useScrollSpy
+│  ├─ lib/ sendMessage, rateLimit, assets
+│  ├─ pages/ Home, ProjectDetails, NotFound
+│  ├─ App.jsx, main.jsx, index.css
+├─ vercel.json
+├─ .env.example
+├─ PLAN.md
+└─ README.md
 ```
 
-## How to update content
+## Edit content
 
-Almost everything lives in **`src/data/portfolio.ts`**:
+All copy lives in `src/data/*.js`:
 
-- `site` — name, email, phone, location, GitHub/LinkedIn, resume path
-- `hero` — headline, intro copy, stats
-- `featuredProject` and `projects` — project cards, links, tech, metrics
-- `experiences`, `education`, `focusAreas`
-- `skillGroups`, `awards`
-- `marqueeItems`, section intros, contact copy
+- `site.js` — name, role, email, location, social URLs, resume/photo paths, hero copy, About paragraphs (use `[[keywords]]` for the animated underline).
+- `experience.js` — roles, bullets, tech, certificate path.
+- `projects.js` — project cards, badges, bullets, tech, live/GitHub URLs, image arrays, featured flag.
+- `skills.js` — AI/Agentic group + category groups.
+- `achievements.js` — SIH gallery/story and DSA numbers/links.
+- `education.js` — degree, subjects, practice bullets.
 
-You do not need to touch component files for normal content edits.
+### Add or update a project
 
-### Add a new project
+1. Add an object to `src/data/projects.js` (copy an existing one; `slug` must match the markdown file name).
+2. Add four images at `public/images/projects/<slug>/shot-1.webp` … `shot-4.webp` (16:9).
+3. Create `src/content/projects/<slug>.md` using an existing file as the template (Overview, Key Features, Architecture, Tech Stack & Why, Backend Flow, Database Schema, Challenges & Solutions, Results, Links).
 
-Add an object to the `projects` array in `src/data/portfolio.ts`:
+Markdown is loaded at build time via `import.meta.glob`. Mermaid blocks are rendered lazily in both themes. The page title comes from the project header, so the first `# Heading` in the markdown is stripped before rendering to avoid a duplicate H1.
 
-```ts
-{
-  id: "my-new-project",
-  title: "My New Project",
-  subtitle: "One-line summary",
-  tag: "Full-stack",
-  year: "2026",
-  description: "What it does and why it matters.",
-  bullets: [
-    "A result with a **bold metric**.",
-    "The engineering detail behind it.",
-  ],
-  tech: ["React", "Node.js", "MongoDB"],
-  links: [
-    { label: "Live", href: "https://example.com", kind: "live" },
-    { label: "Code", href: "https://github.com/Brijesh667/repo", kind: "code" },
-  ],
-}
-```
+### Replace assets
 
-Double asterisks in bullets render as emphasis. The card is picked up automatically in the Work grid.
+Keep the same filenames so the data file does not need edits:
 
-**To update your resume:** replace `public/resume.pdf` (keep the filename, or update `site.resumePath`). If you want the downloaded file renamed, change `site.resumeDownloadName`.
+| Asset | Path | Size |
+| --- | --- | --- |
+| Profile photo | `public/images/profile.webp` | 4:5 (e.g. 800×1000) |
+| Project screenshots | `public/images/projects/<slug>/shot-1…4.webp` | 16:9 (e.g. 1280×720) |
+| SIH photos | `public/images/sih/sih-1…5.webp` | 3:2 (e.g. 1200×800) |
+| Resume | `public/resume/Brijesh_Kumar_Resume.pdf` | any |
+| Certificate | `public/certificates/iitkgp-internship.pdf` | any |
+| Social preview | `public/images/og.png` | 1200×630 |
 
-**To change the theme colour:** edit `--accent`, `--accent-contrast`, `--accent-ink`, and `--accent-soft` in the `[data-theme="dark"]` and `[data-theme="light"]` blocks of `src/styles.css`.
+### Contact form
 
-**To replace the social preview:** swap `public/og.png` with any 1200×630 PNG.
+1. Create a free access key at [web3forms.com](https://web3forms.com/) using `bk767042@gmail.com`.
+2. Copy `.env.example` to `.env` and set `VITE_WEB3FORMS_KEY=…`.
+3. For GitHub Pages, add the same variable as a repository secret or build-time environment value in the workflow.
 
-## Features
+Without a key the form shows a friendly error pointing to email instead of crashing. The form also includes a honeypot and a **2 messages per 24 hours** localStorage rate limit. `src/lib/sendMessage.js` is isolated so it can be replaced with a custom backend later.
 
-- Responsive layout tested at 1440, 1024, 768, 390, and 320 px
-- System-aware dark/light theme with a persisted manual choice
-- Accessible mobile menu with scroll lock, `inert` background, and focus return
-- Scroll reveals, active section navigation, reading progress
-- Copy-email button with clipboard fallback and `aria-live` feedback
-- Reduced-motion support and semantic landmarks
-- SEO metadata, Open Graph/Twitter cards, and `Person` JSON-LD
+## TODO values to confirm
 
-## Checks run
+- **Sentinels of Truth accuracy:** 99.00% from the resume is stored in `src/data/projects.js` with a `TODO: confirm` comment (another note says 94/100). Confirm and update both the data and case study.
+- **GfG / LeetCode URLs:** currently platform homepages with TODO comments in `src/data/achievements.js`; replace with the real profiles.
+- **Case study details:** each markdown file has explicit TODO sections for auth, routes, schemas, and deployment specifics.
+- **SIH story:** written from the known facts; a TODO comment marks it for personalisation.
 
-- `npm run build` passes (TypeScript + Vite production build)
-- `axe-core` WCAG 2.1/2.2 A + AA scan: **0 violations** across dark/light desktop and mobile, plus tablet
-- No console errors; no horizontal overflow at 1440 px or 390 px
-- Theme toggle, mobile menu (open/Escape/inert), copy-to-clipboard, active nav, and resume/OG/favicon asset URLs verified
+## Placeholders
 
-Automated checks are a floor, not a guarantee. Manual screen reader, keyboard, and zoom testing is still worthwhile.
+Everything visual is local. The profile photo, project screenshots, SIH photos, and certificate are labelled placeholders, so the site is presentable now and can be upgraded later without code changes.
 
-## Credits
+## Accessibility & motion
 
-Designed and built for Brijesh Kumar. Content is based on the supplied resume; all project links point to the live apps and repositories listed in it.
+- Semantic headings, labels, alt text, visible focus rings, skip link, keyboard-operable menu, and focus containment in the image lightbox.
+- `prefers-reduced-motion` disables reveals, auto-advance, count-ups, and smooth scrolling.
+- Automated `axe-core` WCAG 2.1/2.2 A + AA scans run clean on home (dark/light/mobile) and project detail pages.
+- Only the animations from the brief are used: fade-up reveals, hover lift, count-up, slider/lightbox fades, timeline draw, and About underline draw.
