@@ -1,19 +1,26 @@
 # Brijesh Kumar — Portfolio
 
-Recruiter-focused portfolio for **Brijesh Kumar** — MERN full-stack developer and Agentic AI researcher at IIT Kharagpur.
+Personal portfolio for **Brijesh Kumar**, a MERN full-stack developer from
+Bilaspur, India. Built on the open-source
+[portfolio-template](https://github.com/sabin-paudel/portfolio-template) by
+[Sabin Paudel](https://sabinpaudel.com.np), then rewritten with custom content.
 
-**Live site:** [https://brijesh667.github.io/MyPortfolio/](https://brijesh667.github.io/MyPortfolio/)
+## Live sections
 
-## Stack
+| Route | Content |
+| --- | --- |
+| `/` | Hero, working principles, featured projects |
+| `/about` | Introduction, experience, education, skills |
+| `/projects` | All projects with live/source links |
+| `/contact` | Email, phone, socials, availability |
 
-- **React 18 + Vite** (JavaScript/JSX)
-- **Tailwind CSS** with CSS variable theme tokens
-- **react-router-dom** — `/` and `/projects/:slug`
-- **framer-motion** — reveals, count-up, slider fades, lightbox, timeline
-- **react-icons**
-- **react-markdown + remark-gfm + rehype-highlight + rehype-slug**
-- **mermaid** — lazy-loaded in project detail pages
-- **Web3Forms** — contact form (frontend only)
+## Tech stack
+
+- Next.js 16 (App Router) + React 19
+- TypeScript
+- Tailwind CSS 4
+- Framer Motion + Lucide React
+- Generated Open Graph images, sitemap, and robots
 
 ## Run locally
 
@@ -22,132 +29,104 @@ npm install
 npm run dev
 ```
 
-Open `http://localhost:5173`.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Build & preview
+## Where the content lives
+
+Everything you need to edit is in
+[`app/lib/config/portfolio.ts`](./app/lib/config/portfolio.ts):
+
+- profile, location, contact details, and social links
+- hero, home page, about page, contact page, and footer copy
+- projects, tags, and live/source URLs
+- experience, education, and skills
+- SEO metadata and structured data
+
+Icons are registered in
+[`app/lib/icons.tsx`](./app/lib/icons.tsx). Page layouts, SEO metadata, the
+sitemap, and the Open Graph images all read from the config.
+
+## Images
+
+The profile photo is `public/images/profile.webp` and is used on the home hero
+and metadata fallback. The about and contact pages rotate through a gallery of
+photos with a random slide direction on every change (left→right, right→left,
+top→bottom, or bottom→top):
+
+| File | Used for |
+| --- | --- |
+| `public/images/profile.webp` | Profile photo / home hero |
+| `public/images/iitkgp-1.webp` | IIT Kharagpur campus |
+| `public/images/iitkgp-2.webp` | At IIT Kharagpur |
+| `public/images/sih-1.webp` | Smart India Hackathon 2025 winner |
+| `public/images/sih-2.webp` | SIH 2025 grand finale team |
+
+The gallery is defined in `portfolio.images.gallery`. Add or remove entries
+there to change which photos rotate. Images are cropped with `object-cover`, so
+any aspect ratio fits the boxes without stretching.
+
+Project screenshots live in `public/projects/` and slide from right to left
+automatically in the cards (every 2 seconds):
+
+| Project | Files |
+| --- | --- |
+| Sentinels of Truth | `sentinels-1.png` … `sentinels-3.png` |
+| Applied | `applied-1.png` … `applied-4.png` |
+| MyFitness | `fitness-1.png` … `fitness-4.png` |
+| Prashikshak | `prashikshak-1.png` … `prashikshak-3.png` |
+
+Each project supports a `gallery` array in `portfolio.ts`; `image` is the
+primary image used for metadata/structured data. To add or remove screenshots,
+update the files and the matching `gallery` array. Keep screenshots in a
+roughly 16:10 to 19:9 ratio for the best fit.
+
+## Projects included
+
+1. **Sentinels of Truth** — AI fact-verification engine
+2. **Applied** — AI job search and application tracker
+3. **MyFitness** — TypeScript + MERN fitness platform with a RAG diet assistant
+4. **Prashikshak** — training management system (SIH 2025 winner, source only)
+
+## Environment variables
+
+Both integrations are optional:
+
+```env
+UMAMI_ID=
+GOOGLE_VERIFICATION=
+```
+
+Create `.env.local` in the project root if you want to enable them.
+
+## Build
 
 ```bash
-npm run build        # production build → dist/
-npm run preview      # serve dist/ locally
-npm run build:pages  # GitHub Pages build + 404.html fallback
+npm run lint
+npm run build
+npm run start
 ```
 
-To preview the GitHub Pages base path locally (after `build:pages`), serve `dist` under `/MyPortfolio/` and fall back to `dist/404.html` for unknown paths.
+Deploy to Vercel or any Node.js-compatible host. After deploying, update
+`url` in `app/lib/config/portfolio.ts` so canonical URLs, the sitemap, and
+Open Graph tags point to the real domain.
 
-## Deploy
+## GitHub Pages
 
-### GitHub Pages (current)
+The site is deployed to
+[`https://brijesh667.github.io/MyPortfolio/`](https://brijesh667.github.io/MyPortfolio/)
+by the workflow in `.github/workflows/deploy.yml`.
 
-Live at **https://brijesh667.github.io/MyPortfolio/**.
+On every push to `main`, GitHub Actions:
 
-The workflow in `.github/workflows/deploy.yml` runs on every push to `main`:
+1. installs dependencies with `npm ci`
+2. builds a static export with `GITHUB_PAGES=true`
+3. publishes the generated `out/` folder to GitHub Pages
 
-1. installs dependencies,
-2. runs `npm run build:pages` (base path `/MyPortfolio/` + copies `index.html` to `404.html` so deep links work),
-3. deploys the artifact through GitHub Actions.
+With `GITHUB_PAGES=true`, `next.config.ts` enables `output: "export"`,
+`basePath: "/MyPortfolio"`, and unoptimized images so the site works under the
+repository subpath. Local development (`npm run dev`) stays at the root URL.
 
-Push an update:
+## Credit
 
-```bash
-git add .
-git commit -m "Update portfolio"
-git push origin main
-```
-
-Watch progress under the repo's **Actions** tab. If the repo is renamed, update `--base=/MyPortfolio/` in `package.json` (`build:pages`), the canonical/OG URLs in `index.html`, and the JSON-LD `url`.
-
-### Vercel
-
-Import the repo at [vercel.com/new](https://vercel.com/new). Vercel detects Vite automatically:
-
-- **Build command:** `npm run build`
-- **Output directory:** `dist`
-
-`vercel.json` rewrites every path to `/index.html`, so `/projects/:slug` works on refresh. Vercel serves from `/`, so no base path is needed there. Update the canonical and OG URLs in `index.html` if you switch to a custom domain.
-
-## Project structure
-
-```
-.
-├─ public/
-│  ├─ resume/Brijesh_Kumar_Resume.pdf        # replace with the current resume
-│  ├─ certificates/iitkgp-internship.pdf     # placeholder certificate
-│  └─ images/
-│     ├─ profile.webp                        # placeholder profile photo
-│     ├─ og.png
-│     ├─ sih/sih-1.webp … sih-5.webp         # 3:2 placeholders
-│     └─ projects/<slug>/shot-1.webp … 4     # 16:9 placeholders
-├─ src/
-│  ├─ components/
-│  │  ├─ layout/ Header, MobileMenu, Footer
-│  │  ├─ sections/ Hero, About, Experience, Projects, Skills, Achievements, Education, Contact
-│  │  └─ ui/ Section, SectionHeading, Chip, TechChip, Button, Reveal, CountUp, ImageSlider, Lightbox, …
-│  ├─ content/projects/ 4 markdown case studies
-│  ├─ data/ site, experience, projects, skills, achievements, education
-│  ├─ hooks/ useTheme, useScrollSpy
-│  ├─ lib/ sendMessage, rateLimit, assets
-│  ├─ pages/ Home, ProjectDetails, NotFound
-│  ├─ App.jsx, main.jsx, index.css
-├─ vercel.json
-├─ .env.example
-├─ PLAN.md
-└─ README.md
-```
-
-## Edit content
-
-All copy lives in `src/data/*.js`:
-
-- `site.js` — name, role, email, location, social URLs, resume/photo paths, hero copy, About paragraphs (use `[[keywords]]` for the animated underline).
-- `experience.js` — roles, bullets, tech, certificate path.
-- `projects.js` — project cards, badges, bullets, tech, live/GitHub URLs, image arrays, featured flag.
-- `skills.js` — AI/Agentic group + category groups.
-- `achievements.js` — SIH gallery/story and DSA numbers/links.
-- `education.js` — degree, subjects, practice bullets.
-
-### Add or update a project
-
-1. Add an object to `src/data/projects.js` (copy an existing one; `slug` must match the markdown file name).
-2. Add four images at `public/images/projects/<slug>/shot-1.webp` … `shot-4.webp` (16:9).
-3. Create `src/content/projects/<slug>.md` using an existing file as the template (Overview, Key Features, Architecture, Tech Stack & Why, Backend Flow, Database Schema, Challenges & Solutions, Results, Links).
-
-Markdown is loaded at build time via `import.meta.glob`. Mermaid blocks are rendered lazily in both themes. The page title comes from the project header, so the first `# Heading` in the markdown is stripped before rendering to avoid a duplicate H1.
-
-### Replace assets
-
-Keep the same filenames so the data file does not need edits:
-
-| Asset | Path | Size |
-| --- | --- | --- |
-| Profile photo | `public/images/profile.webp` | 4:5 (e.g. 800×1000) |
-| Project screenshots | `public/images/projects/<slug>/shot-1…4.webp` | 16:9 (e.g. 1280×720) |
-| SIH photos | `public/images/sih/sih-1…5.webp` | 3:2 (e.g. 1200×800) |
-| Resume | `public/resume/Brijesh_Kumar_Resume.pdf` | any |
-| Certificate | `public/certificates/iitkgp-internship.pdf` | any |
-| Social preview | `public/images/og.png` | 1200×630 |
-
-### Contact form
-
-1. Create a free access key at [web3forms.com](https://web3forms.com/) using `bk767042@gmail.com`.
-2. Copy `.env.example` to `.env` and set `VITE_WEB3FORMS_KEY=…`.
-3. For GitHub Pages, add the same variable as a repository secret or build-time environment value in the workflow.
-
-Without a key the form shows a friendly error pointing to email instead of crashing. The form also includes a honeypot and a **2 messages per 24 hours** localStorage rate limit. `src/lib/sendMessage.js` is isolated so it can be replaced with a custom backend later.
-
-## TODO values to confirm
-
-- **Sentinels of Truth accuracy:** 99.00% from the resume is stored in `src/data/projects.js` with a `TODO: confirm` comment (another note says 94/100). Confirm and update both the data and case study.
-- **GfG / LeetCode URLs:** currently platform homepages with TODO comments in `src/data/achievements.js`; replace with the real profiles.
-- **Case study details:** each markdown file has explicit TODO sections for auth, routes, schemas, and deployment specifics.
-- **SIH story:** written from the known facts; a TODO comment marks it for personalisation.
-
-## Placeholders
-
-Everything visual is local. The profile photo, project screenshots, SIH photos, and certificate are labelled placeholders, so the site is presentable now and can be upgraded later without code changes.
-
-## Accessibility & motion
-
-- Semantic headings, labels, alt text, visible focus rings, skip link, keyboard-operable menu, and focus containment in the image lightbox.
-- `prefers-reduced-motion` disables reveals, auto-advance, count-ups, and smooth scrolling.
-- Automated `axe-core` WCAG 2.1/2.2 A + AA scans run clean on home (dark/light/mobile) and project detail pages.
-- Only the animations from the brief are used: fade-up reveals, hover lift, count-up, slider/lightbox fades, timeline draw, and About underline draw.
+Template by [Sabin Paudel](https://sabinpaudel.com.np). Content and branding
+customized for Brijesh Kumar.
