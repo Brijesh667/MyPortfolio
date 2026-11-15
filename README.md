@@ -7,7 +7,7 @@ Bilaspur, India. Built on the open-source
 
 ## Single-page layout
 
-Everything lives on `/` as four scroll sections:
+Everything lives on one page as four scroll sections:
 
 | Section | Anchor | Content |
 | --- | --- | --- |
@@ -20,18 +20,15 @@ The navbar follows the section in view (scrollspy) and all links use smooth
 scrolling. A thin progress line at the top fills as the page scrolls. The hero
 uses an interactive grid-pattern background and project cards use a
 hover-animated `Live` button. The old `/about`, `/projects` and `/contact` URLs
-redirect to their matching section.
-
-Footer: home page only (`©` line + GitHub · LinkedIn · Email).
+redirect to their matching section through static pages in `public/`.
 
 ## Tech stack
 
-- Next.js 16 (App Router) + React 19
-- TypeScript
-- Tailwind CSS 4
+- Vite + React 19 (JavaScript, no TypeScript)
+- Tailwind CSS 3
 - Lucide React
 - Minimal Framer Motion (hero/nav load fade only)
-- Generated Open Graph images, sitemap, and robots
+- Static Open Graph image, sitemap, and robots
 
 ## Run locally
 
@@ -40,22 +37,20 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:5173](http://localhost:5173).
 
 ## Where the content lives
 
 Everything you need to edit is in
-[`app/lib/config/portfolio.ts`](./app/lib/config/portfolio.ts):
+[`src/data/portfolio.js`](./src/data/portfolio.js):
 
 - profile, location, contact details, and social links
 - hero, home page, about page, contact page, and footer copy
 - projects, tags, and live/source URLs
 - experience, education, and skills
-- SEO metadata and structured data
+- SEO metadata
 
-Icons are registered in
-[`app/lib/icons.tsx`](./app/lib/icons.tsx). Page layouts, SEO metadata, the
-sitemap, and the Open Graph images all read from the config.
+Icons are registered in [`src/lib/icons.jsx`](./src/lib/icons.jsx).
 
 ## Images & resume
 
@@ -65,14 +60,15 @@ sitemap, and the Open Graph images all read from the config.
 | `public/images/iitkgp-1.webp`, `iitkgp-2.webp` | About/Contact gallery |
 | `public/images/sih-1.webp`, `sih-2.webp` | About/Contact gallery |
 | `public/projects/*.webp` | Project card galleries |
-| `public/resume.pdf` | Resume download (Hero + Contact) |
+
+The Resume buttons (Hero + Contact) open `portfolio.resumeUrl`, which currently
+points to a Google Drive copy of the updated resume.
 
 - Project cards slide **right → left every 2 seconds** with clickable dots.
-- About and Contact photos change **every 3 seconds** with a random slide
-  direction (left→right, right→left, top→bottom or bottom→top).
+- About photos change **every 3 seconds** with a random slide direction
+  (left→right, right→left, top→bottom or bottom→top).
 - Gallery image lists live in `portfolio.projects[].gallery` and
-  `portfolio.images.gallery`. The `image` field is the primary project image
-  used by metadata/structured data.
+  `portfolio.images.gallery`.
 - Screenshots look best around a 16:10 to 19:9 ratio.
 
 ## Projects included
@@ -87,32 +83,28 @@ sitemap, and the Open Graph images all read from the config.
 Copy `.env.example` to `.env.local`:
 
 ```env
-NEXT_PUBLIC_WEB3FORMS_KEY=
-UMAMI_ID=
-GOOGLE_VERIFICATION=
+VITE_WEB3FORMS_KEY=
+VITE_UMAMI_ID=
+VITE_GOOGLE_VERIFICATION=
 ```
 
-- `NEXT_PUBLIC_WEB3FORMS_KEY` is required for the contact form. Get an access
-  key from [web3forms.com](https://web3forms.com).
-- `UMAMI_ID` and `GOOGLE_VERIFICATION` are optional.
+- `VITE_WEB3FORMS_KEY` is required for the contact form. Get an access key from
+  [web3forms.com](https://web3forms.com).
+- `VITE_UMAMI_ID` and `VITE_GOOGLE_VERIFICATION` are optional.
+- Vite only exposes variables that start with `VITE_`.
 
 For GitHub Pages, add the Web3Forms key as a repository secret named
 `WEB3FORMS_KEY` under **Settings → Secrets and variables → Actions**. The
-deploy workflow passes it to the build as `NEXT_PUBLIC_WEB3FORMS_KEY`.
+deploy workflow passes it to the build as `VITE_WEB3FORMS_KEY`.
 
 `.env.local` is ignored by git; `.env.example` is safe to commit.
 
 ## Build
 
 ```bash
-npm run lint
-npm run build
-npm run start
+npm run build     # writes dist/
+npm run preview   # preview the production build
 ```
-
-Deploy to Vercel or any Node.js-compatible host. After deploying, update
-`url` in `app/lib/config/portfolio.ts` so canonical URLs, the sitemap, and
-Open Graph tags point to the real domain.
 
 ## GitHub Pages
 
@@ -123,12 +115,18 @@ by the workflow in `.github/workflows/deploy.yml`.
 On every push to `main`, GitHub Actions:
 
 1. installs dependencies with `npm ci`
-2. builds a static export with `GITHUB_PAGES=true`
-3. publishes the generated `out/` folder to GitHub Pages
+2. builds the static site with `npm run build`
+3. publishes the generated `dist/` folder to GitHub Pages
 
-With `GITHUB_PAGES=true`, `next.config.ts` enables `output: "export"`,
-`basePath: "/MyPortfolio"`, and unoptimized images so the site works under the
-repository subpath. Local development (`npm run dev`) stays at the root URL.
+`vite.config.js` sets `base: "/MyPortfolio/"` for production builds, so assets
+and local URLs resolve correctly under the repository subpath. Local
+development (`npm run dev`) stays at the root URL.
+
+Old URLs keep working as static redirect pages:
+
+- `public/about/index.html` → `/#about`
+- `public/projects/index.html` → `/#projects`
+- `public/contact/index.html` → `/#contact`
 
 ## Credit
 

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://brijesh667.github.io/MyPortfolio/sitemap.xml
+Host: https://brijesh667.github.io/MyPortfolio

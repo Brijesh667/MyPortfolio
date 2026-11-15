@@ -13,11 +13,8 @@
 # testing
 /coverage
 
-# next.js
-/.next/
-/out/
-
-# production
+# build output
+/dist
 /build
 
 # misc
@@ -36,13 +33,7 @@ yarn-error.log*
 .env*.local
 !.env.example
 
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-
 # local documentation (never push)
 Content.md
 PORTFOLIO_CLEANUP.md
+CONVERSION_BRIEF.md
