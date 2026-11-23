@@ -83,7 +83,7 @@ const portfolio = {
   ],
 
   resumeUrl:
-    "https://drive.google.com/file/d/17lU4Qf6Kym3nOw4TgV-zWL0wkxk2fpKJ/view?usp=sharing",
+    "https://drive.google.com/file/d/1Ju0izERlEp3bycoftO_YkH9sk_NqKzBJ/view?usp=sharing",
 
   hero: {
     heading: "Hi, I'm Brijesh.",
@@ -92,7 +92,7 @@ const portfolio = {
     primaryCta: { label: "View projects", href: "#projects", icon: "ArrowRight" },
     resumeCta: {
       label: "Resume",
-      href: "https://drive.google.com/file/d/17lU4Qf6Kym3nOw4TgV-zWL0wkxk2fpKJ/view?usp=sharing",
+      href: "https://drive.google.com/file/d/1Ju0izERlEp3bycoftO_YkH9sk_NqKzBJ/view?usp=sharing",
       icon: "FileText",
     },
   },
